@@ -75,12 +75,13 @@ class Coveringarray:
         
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['strength']},
-                                                'workspace_name': params['workspace_name']})
+                                                'text_message': outputText},
+                                                'workspace_name': params['workspace_name']
+
+                                                })
         output = {
             'report_name': report_info['name'],
-            'report_ref': report_info['ref'],
-            'output_array': outputText
+            'report_ref': report_info['ref']
         }
         #END run_Coveringarray
 
