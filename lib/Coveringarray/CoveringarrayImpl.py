@@ -69,7 +69,7 @@ class Coveringarray:
 
         outputText = outputfile.read()
 
-        print("This is the print text of annealing: "+outputText)
+       # print("This is the print text of annealing: "+outputText)
 
         
         
@@ -80,6 +80,7 @@ class Coveringarray:
         output = {
             'report_name': report_info['name'],
             'report_ref': report_info['ref'],
+            'output_array': outputText
         }
         #END run_Coveringarray
 
