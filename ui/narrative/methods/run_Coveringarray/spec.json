@@ -30,7 +30,15 @@
 
     ],
     "parameters":[ 
-    	
+    	{
+            "id": "container_name",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "empty" ],
+            "field_type": "text"
+            
+        },
         {
             "id": "option_1",
             "optional": false,
