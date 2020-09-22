@@ -60,7 +60,8 @@ class Coveringarray:
         int value
 
         #container_object is a list due to 'allow multiple' = true 
-        #each entry in container_object list has its own grouping of settings 1,2,3
+        #ea",
+ch entry in container_object list has its own grouping of settings 1,2,3
         #all entry forms are free form text boxes associated with a known id
         # of measuring strenth and factors through volume of known id, and pairs through combinations of known id,
         #user input never is used in the program
@@ -72,7 +73,7 @@ class Coveringarray:
         factors++
         value  = 0
         for y in params["container_object"][x]:
-            if y != "empty":
+            if y != null:
                 value++
         pairs = pairs + value + '1\n'
 

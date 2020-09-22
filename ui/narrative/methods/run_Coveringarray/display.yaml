@@ -24,7 +24,7 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    strength:
+    option_1:
         ui-name: |
             Strength parameter
         short-hint: |
@@ -32,7 +32,7 @@ parameters :
         long-hint : |
             The first parameter that needs to be entered to drive the method. This might be the first of many.
 
-    factors:
+    option_2:
         ui-name : |
             Factors parameter
         short-hint: |
@@ -40,7 +40,7 @@ parameters :
         long-hint : |
             The second parameter that needs to be entered to drive the method. This might be the first of many.
 
-    pairs:
+    option_3:
         ui-name: |
             Pairs parameter
         short-hint: |

@@ -1,4 +1,4 @@
-{
+{ 
     "ver": "0.0.1",
     "authors": [
         "drewcross06"
@@ -9,40 +9,55 @@
         "input": null,
         "output": null
     },
-    "parameters": [ 
+
+    "parametergroups":[
+    	{
+    		"id":"container_object",
+    		"parameters":[
+    			"container_name",
+    			"option_1",
+    			"option_2",
+    			"option_3"
+    		],
+
+    		"optional": false,
+    		"advanced": false,
+    		"allow_multiple": true
+    	}
+
+
+
+
+    ],
+    "parameters":[ 
+    	
         {
-            "id": "strength",
+            "id": "option_1",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ ]
-            }
+            "default_values": [ "empty" ],
+            "field_type": "text"
+            
         },
         {
-            "id": "factors",
+            "id": "option_2",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ ]
-            }
+            "default_values": [ "empty" ],
+            "field_type": "text"
         },
         {
-            "id": "pairs",
+            "id": "option_3",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types": [ ]
-            }
-        }
+            "default_values":["empty"],
+            "field_type": "text"
+                }
+            
+        
     ],
     "behavior": {
         "service-mapping": {
@@ -57,14 +72,17 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "strength",
-                    "target_property": "strength"
+                    "narrative_system_variable": "container_name",
+                    "target_property": "container_name"
                 },{
-                    "input_parameter": "factors",
-                    "target_property": "factors"
+                    "narrative_system_variable": "option_1",
+                    "target_property": "option_1"
                 },{
-                    "input_parameter": "pairs",
-                    "target_property": "pairs"
+                    "narrative_system_variable": "option_2",
+                    "target_property": "option_2"
+                },{
+                    "narrative_system_variable": "option_3",
+                    "target_property": "option_3"
                 }
             ],
             "output_mapping": [
