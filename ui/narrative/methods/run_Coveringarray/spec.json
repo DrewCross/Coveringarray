@@ -14,7 +14,6 @@
     	{
     		"id":"container_object",
     		"parameters":[
-    			"container_name",
     			"option_1",
     			"option_2",
     			"option_3"
@@ -24,21 +23,10 @@
     		"advanced": false,
     		"allow_multiple": true
     	}
-
-
-
-
     ],
     "parameters":[ 
-    	{
-            "id": "container_name",
-            "optional": false,
-            "advanced": false,
-            "allow_multiple": false,
-            "default_values": [ "empty" ],
-            "field_type": "text"
-            
-        },
+        
+    	
         {
             "id": "option_1",
             "optional": false,
@@ -79,9 +67,6 @@
                 },{
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
-                },{
-                    "narrative_system_variable": "container_name",
-                    "target_property": "container_name"
                 },{
                     "narrative_system_variable": "option_1",
                     "target_property": "option_1"
