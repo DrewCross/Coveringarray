@@ -10,23 +10,23 @@
         "output": null
     },
 
-    "parametergroups":[
-    	{
-    		"id":"container_object",
-    		"parameters":[
-    			"option_1",
-    			"option_2",
-    			"option_3"
-    		],
+    "parameter-groups":[
+        {
+            "id":"container_object",
+            "parameters":[
+                "option_1",
+                "option_2"
+            ],
 
-    		"optional": false,
-    		"advanced": false,
-    		"allow_multiple": true
-    	}
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": true,
+            "with_border": true
+        }
     ],
     "parameters":[ 
         
-    	
+        
         {
             "id": "option_1",
             "optional": false,
@@ -40,18 +40,10 @@
             "id": "option_2",
             "optional": false,
             "advanced": false,
-            "allow_multiple": false,
+            "allow_multiple": true,
             "default_values": [ "empty" ],
             "field_type": "text"
-        },
-        {
-            "id": "option_3",
-            "optional": false,
-            "advanced": false,
-            "allow_multiple": false,
-            "default_values":["empty"],
-            "field_type": "text"
-                }
+        }
             
         
     ],
@@ -68,15 +60,16 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "narrative_system_variable": "option_1",
+                    "input_parameter": "option_1",
                     "target_property": "option_1"
                 },{
-                    "narrative_system_variable": "option_2",
+                    "input_parameter": "option_2",
                     "target_property": "option_2"
                 },{
-                    "narrative_system_variable": "option_3",
-                    "target_property": "option_3"
+                    "input_parameter": "container_object",
+                    "target_property": "container_object"
                 }
+
             ],
             "output_mapping": [
                 {

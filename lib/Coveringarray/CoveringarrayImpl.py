@@ -24,7 +24,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "1e1cdbb52210cb384ee78040e112b5438eb544f3"
+    GIT_COMMIT_HASH = "6424ee188d361ef3090adfb557c0c0032b29bf30"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -54,10 +54,19 @@ class Coveringarray:
 
 
         # for each 'container_object' iterate for each option, sum object options and number of objects to create strength, and factors numbers
-        int strength = 2
-        int factors
-        str pairs
-        int value
+        strength = 2
+        valueList = []
+        nameList = []
+        sampleSize = 0
+
+
+        #[params]
+        #   [container_object]
+        #       [variable length x1,x2,xn]
+        #           [name]
+        #           [values]
+        #               [variable length x1,x2,xn]
+
 
         #container_object is a list due to 'allow multiple' = true 
         #each entry in container_object list has its own grouping of settings 1,2,3
@@ -66,15 +75,21 @@ class Coveringarray:
         #user input never is used in the program
         # after coveringarray output is obtained, the container object list is used to swap id with text form entries.
         # strength = params["strength"]
-       for x in params["container_object"]:
+        for x in range(len(params['container_object'])):
         # records number of objects with settings",
+            if params['container_object'][x]['option_1'] != "empty":
+                nameList.append(params['container_object'][x]['option_1'])
+                for y in range(len(params['container_object'][x]['option_2'])):
+                    valueList.append(params['container_object'][x]['option_2'][y])
 
-        factors++
-        value  = 0
-        for y in params["container_object"][x]:
-            if y != "empty":
-                value++
-        pairs = pairs + value + '1\n'
+
+        #each params["container_object"][x] is a has a list with a name and another list of strings
+
+        sampleSize = strength * len(nameList)
+    
+
+                
+        #pairs = pairs + value + '1\n'
 
 
             #records number of settings in each object",
@@ -84,7 +99,7 @@ class Coveringarray:
             # ? how to sum of pair sequence?
 
 
-        formattedParams = strength + '\n' + factors + '\n' + pairs
+        formattedParams = str(strength) + '\n' + str(sampleSize) + '\n' + ''.join(valueList)
         #formattedParams = params["strength"] +'\n'+ params["factors"] +'\n'+ params["pairs"]
 
        # formattedParams = "2\n4\n3 1 \n3 1\n3 1\n2 1" ################### Legacy test string, example of formatted input
@@ -98,9 +113,35 @@ class Coveringarray:
 
         os.system('/kb/module/./cover inputfile.txt -F')
 
-        outputfile = open("anneal.out",'r')
+        outputfile = open("inputfile.txt",'r')
 
         outputText = outputfile.read()
+
+        finaloutputText = "Sample Size: %d \n"
+
+        for name in nameList:
+            finaloutputText += name 
+            finaloutputText += " "
+
+        finaloutputText += "\n ==================== \n"
+
+        matrixReadFlag = 0
+        for c in outputText:
+            if c.isdigit():
+                if int(c) == sampleSize:
+                    matrixReadFlag = 1
+
+                if int(c) < len(valueList) and matrixReadFlag == 1:
+                    finaloutputText+= valueList[c]
+                else:
+                    finaloutputText+= c 
+
+
+
+
+
+
+
 
         
 
@@ -110,7 +151,7 @@ class Coveringarray:
         
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': outputText},
+                                                'text_message': finaloutputText},
                                                 'workspace_name': params['workspace_name']
 
                                                 })
