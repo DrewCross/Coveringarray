@@ -37,11 +37,64 @@ parameters:
 
     option_1:
         ui-name: |
+            Name
+        short-hint: |
+            Name of the parameter
+        long-hint : |
+            #
+# define display information
+#
+name: Covering Array
+
+tooltip: |
+    Evaluate test coverage of input objects
+
+screenshots: []
+
+icon: icon.png
+
+#
+# define a set of similar apps that might be useful to the user
+#
+suggestions:
+    apps:
+        related:
+            [app1, app2]
+        next:
+            [app3, app4]
+
+#
+# Configure the display and description of parameters
+#
+
+
+parameter-groups:
+
+        container_object:
+            ui-name: |
+              Item to evaluate
+            short-hint: |
+              Item with configuration to test coverage
+
+parameters:
+
+    option_1:
+        ui-name: |
             Strength parameter
         short-hint: |
             Strength of annealing
         long-hint : |
             The first parameter that needs to be entered to drive the method. This might be the first of many.
+    option_2:
+        ui-name : |
+            Values
+        short-hint: |
+            Details of annealing
+        long-hint : |
+            The second parameter that needs to be entered to drive the method. This might be the first of many.
+description: |
+      <p>App to demonstrate coverage.</p>
+
     option_2:
         ui-name : |
             Factors parameter
