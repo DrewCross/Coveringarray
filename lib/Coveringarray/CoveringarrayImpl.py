@@ -24,7 +24,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "6424ee188d361ef3090adfb557c0c0032b29bf30"
+    GIT_COMMIT_HASH = "c8f5acf5a562eaf85bdc79e8b71331b316b3b34f"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -56,9 +56,9 @@ class Coveringarray:
         # for each 'container_object' iterate for each option, sum object options and number of objects to create strength, and factors numbers
         strength = 2
         valueList = []
-        nameList = []
+        nameList = {}
         sampleSize = 0
-
+        #turn namelist into a dict, assign name with value of len(opt2) at assignment time
 
         #[params]
         #   [container_object]
@@ -78,17 +78,26 @@ class Coveringarray:
         for x in range(len(params['container_object'])):
         # records number of objects with settings",
             if params['container_object'][x]['option_1'] != "empty":
-                nameList.append(params['container_object'][x]['option_1'])
+                nameList[(params['container_object'][x]['option_1'])] = len(params['container_object'][x]['option_2'])
                 for y in range(len(params['container_object'][x]['option_2'])):
                     valueList.append(params['container_object'][x]['option_2'][y])
 
 
         #each params["container_object"][x] is a has a list with a name and another list of strings
+        sampleSize = len(nameList)
 
-        sampleSize = strength * len(nameList)
-    
+        #nameList = [firefox,network,os]
 
-                
+          #           0   1  2   3  4  5 6
+       # valueList = [on,off,on,off,a,b,c]
+
+
+
+              #  2
+              #  3
+              #  2 1
+              #  2 1
+              #  3 1
         #pairs = pairs + value + '1\n'
 
 
@@ -97,9 +106,13 @@ class Coveringarray:
             
 
             # ? how to sum of pair sequence?
+            #
 
+        formattedParams = str(strength) + '\n' + str(sampleSize) + '\n' 
 
-        formattedParams = str(strength) + '\n' + str(sampleSize) + '\n' + ''.join(valueList)
+        for name in nameList:
+            formattedParams += str(nameList[name]) + ' 1\n'
+
         #formattedParams = params["strength"] +'\n'+ params["factors"] +'\n'+ params["pairs"]
 
        # formattedParams = "2\n4\n3 1 \n3 1\n3 1\n2 1" ################### Legacy test string, example of formatted input
@@ -107,37 +120,81 @@ class Coveringarray:
 
         inputfile = open("inputfile.txt",'w')
 
+        
         inputfile.write(formattedParams)
+
+        
+
 
         inputfile.close()
 
+        inputfile = open("inputfile.txt",'r')
+
+        for line in inputfile: 
+            print(line)
+
+        inputfile.close()
+
+        print("\n\n=============== HERE ===============\n\n")
+
+        
+
+        #print("\n\n raw string:")
+
+        #print(formattedParams)
+
+
         os.system('/kb/module/./cover inputfile.txt -F')
 
-        outputfile = open("inputfile.txt",'r')
+        outputfile = open("anneal.out",'r')
+        finaloutputText = " "
+       # print("\n\n\n")
 
-        outputText = outputfile.read()
+        #for line in outputfile:
+         #   print(line)
+        
+        #print("\n\n\n")
 
-        finaloutputText = "Sample Size: %d \n"
+       
 
         for name in nameList:
             finaloutputText += name 
             finaloutputText += " "
 
         finaloutputText += "\n ==================== \n"
-
+        ##count by line instead, look for empty line followed by length 1 line to start
         matrixReadFlag = 0
-        for c in outputText:
-            if c.isdigit():
-                if int(c) == sampleSize:
-                    matrixReadFlag = 1
+        outPutLead = 0;
+        for line in outputfile:
 
-                if int(c) < len(valueList) and matrixReadFlag == 1:
-                    finaloutputText+= valueList[c]
-                else:
-                    finaloutputText+= c 
+            if(line == "\n" and len(line)==1):
+                matrixReadFlag = 1
+            
+
+            
+            if matrixReadFlag == 1 and len(line) == 2:
+                outPutLead = line
+                print(outPutLead)
+                finaloutputText += "Sample Size: "+outPutLead+" \n"
 
 
+            
+            if outPutLead != 0 and matrixReadFlag == 1:
+                for c in line:
+                    if len(line)>2 and c != str(outPutLead):
+                        if c != '\n' and c != ' ':
+                            
+                            finaloutputText+= valueList[int(c)]
+                        else:
+                            finaloutputText+= c 
 
+                        
+        print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n ")
+
+
+## thoughts: 
+
+##each value is organizated by order, with pairs grouped, 
 
 
 

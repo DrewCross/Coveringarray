@@ -9,8 +9,7 @@
         "input": null,
         "output": null
     },
-
-    "parameter-groups":[
+    "parameter-groups": [
         {
             "id":"container_object",
             "parameters":[
