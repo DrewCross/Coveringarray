@@ -24,7 +24,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "c8f5acf5a562eaf85bdc79e8b71331b316b3b34f"
+    GIT_COMMIT_HASH = "c152d808b6ef68960248571f39a6f9dc0123a940"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -147,6 +147,15 @@ class Coveringarray:
         os.system('/kb/module/./cover inputfile.txt -F')
 
         outputfile = open("anneal.out",'r')
+        rawout = " "
+
+        for line in outputfile:
+           rawout+= line
+
+        outputfile.close()
+
+        outputfile = open("anneal.out",'r')
+
         finaloutputText = " "
        # print("\n\n\n")
 
@@ -167,19 +176,7 @@ class Coveringarray:
         outPutLead = 0;
         for line in outputfile:
 
-            if(line == "\n" and len(line)==1):
-                matrixReadFlag = 1
-            
-
-            
-            if matrixReadFlag == 1 and len(line) == 2:
-                outPutLead = line
-                print(outPutLead)
-                finaloutputText += "Sample Size: "+outPutLead+" \n"
-
-
-            
-            if outPutLead != 0 and matrixReadFlag == 1:
+            if outPutLead != 0 and matrixReadFlag == 10:
                 for c in line:
                     if len(line)>2 and c != str(outPutLead):
                         if c != '\n' and c != ' ':
@@ -187,9 +184,22 @@ class Coveringarray:
                             finaloutputText+= valueList[int(c)]
                         else:
                             finaloutputText+= c 
+                            
+            if matrixReadFlag == 3:
+                outPutLead = line
+                print(outPutLead)
+                print("\n\n"+line+"\n\n")
+                finaloutputText += "Sample Size: "+outPutLead+" \n"
+                matrixReadFlag = 10
+
+
+            
+            
+            if(line == "\n" and len(line)==1):
+                matrixReadFlag += 1
 
                         
-        print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n ")
+        print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n" )
 
 
 ## thoughts: 
@@ -214,7 +224,8 @@ class Coveringarray:
                                                 })
         output = {
             'report_name': report_info['name'],
-            'report_ref': report_info['ref']
+            'report_ref': report_info['ref'],
+            'raw_output': rawout
         }
         #END run_Coveringarray
 
