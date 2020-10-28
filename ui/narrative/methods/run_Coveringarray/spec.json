@@ -77,6 +77,9 @@
                 },{
                     "service_method_output_path": [0,"report_ref"],
                     "target_property": "report_ref"
+                },{
+                    "service_method_output_path": [0,"raw_output"],
+                    "target_property": "raw_output"
                 }
             ]
         }
