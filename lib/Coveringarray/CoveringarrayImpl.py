@@ -199,7 +199,7 @@ class Coveringarray:
                 matrixReadFlag += 1
 
                         
-        print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n" )
+        print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n" + rawout )
 
 
 ## thoughts: 
