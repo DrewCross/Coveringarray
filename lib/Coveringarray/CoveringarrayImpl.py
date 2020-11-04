@@ -24,7 +24,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "c152d808b6ef68960248571f39a6f9dc0123a940"
+    GIT_COMMIT_HASH = "a49008314412c29bfe16dc5fe4f885537462d11b"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -177,13 +177,16 @@ class Coveringarray:
         for line in outputfile:
 
             if outPutLead != 0 and matrixReadFlag == 10:
-                for c in line:
+                for c in line.split():
                     if len(line)>2 and c != str(outPutLead):
-                        if c != '\n' and c != ' ':
+                        
                             
                             finaloutputText+= valueList[int(c)]
-                        else:
-                            finaloutputText+= c 
+                            finaloutputText+= " "
+                    else:
+                            finaloutputText+= c
+                            finaloutputText+= " "
+            finaloutputText+= "\n"
                             
             if matrixReadFlag == 3:
                 outPutLead = line
