@@ -3,6 +3,7 @@
 import logging
 import os
 
+
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
 
@@ -24,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "a49008314412c29bfe16dc5fe4f885537462d11b"
+    GIT_COMMIT_HASH = "e5237693ffbd03a187b23f0bef50fb3079478787"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -186,7 +187,8 @@ class Coveringarray:
                     else:
                             finaloutputText+= c
                             finaloutputText+= " "
-            finaloutputText+= "\n"
+                finaloutputText+= "\n"
+            
                             
             if matrixReadFlag == 3:
                 outPutLead = line
