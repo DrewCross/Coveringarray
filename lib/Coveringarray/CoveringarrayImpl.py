@@ -102,12 +102,7 @@ class Coveringarray:
         #pairs = pairs + value + '1\n'
 
 
-            #records number of settings in each object",
-
-            
-
-            # ? how to sum of pair sequence?
-            #
+         
 
         formattedParams = str(strength) + '\n' + str(sampleSize) + '\n' 
 
@@ -131,12 +126,14 @@ class Coveringarray:
 
         inputfile = open("inputfile.txt",'r')
 
+ 	print("\n\n============== Formatted Input Begin ===============\n\n")
+ 	
         for line in inputfile: 
             print(line)
 
         inputfile.close()
 
-        print("\n\n=============== HERE ===============\n\n")
+        print("\n\n============== Formatted Input End ===============\n\n")
 
         
 
@@ -158,13 +155,6 @@ class Coveringarray:
         outputfile = open("anneal.out",'r')
 
         finaloutputText = " "
-       # print("\n\n\n")
-
-        #for line in outputfile:
-         #   print(line)
-        
-        #print("\n\n\n")
-
        
 
         for name in nameList:
