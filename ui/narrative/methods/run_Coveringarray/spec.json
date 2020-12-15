@@ -25,7 +25,15 @@
     ],
     "parameters":[ 
         
-        
+        {
+            "id": "option_0",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "2" ],
+            "field_type": "text"
+            
+        },
         {
             "id": "option_1",
             "optional": false,
@@ -58,6 +66,9 @@
                 },{
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
+                },{
+                    "input_parameter": "option_0",
+                    "target_property": "option_0"
                 },{
                     "input_parameter": "option_1",
                     "target_property": "option_1"

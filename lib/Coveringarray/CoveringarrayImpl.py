@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "cca1d777eebd9048615b366fc74f527f7282edfa"
+    GIT_COMMIT_HASH = "a7373b710fa74e901fd682a2040b51602b86f9da"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -76,6 +76,8 @@ class Coveringarray:
         #user input never is used in the program
         # after coveringarray output is obtained, the container object list is used to swap id with text form entries.
         # strength = params["strength"]
+        strength = int(params['option_0'])
+
         for x in range(len(params['container_object'])):
         # records number of objects with settings",
             if params['container_object'][x]['option_1'] != "empty":

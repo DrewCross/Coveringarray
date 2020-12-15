@@ -37,6 +37,14 @@ parameter-groups:
 
 parameters:
 
+    option_0:
+        ui-name: |
+            Array Strength
+        short-hint: |
+            Strength of the covering array
+        long-hint: |
+            Can be 2,3,4.. etc. Larger strength values lead to longer processing times
+
     option_1:
         ui-name: |
             Setting Name
