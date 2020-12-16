@@ -51,7 +51,8 @@ parameters:
         short-hint: |
             Name of the parameter
         long-hint : |
-            #
+            Describes the name of the setting, can be any number of settings
+            
 # define display information
 #
     option_2:
@@ -60,6 +61,23 @@ parameters:
         short-hint: |
             Each factor value is assigned a single potential value of the named setting
         long-hint : |
+            Describes the states of the setting, can be any number of potential values
+
+    input_media:
+        ui-name : |
+            Media In
+        short-hint: |
+            Import table of potential values
+        long-hint : |
+            Input for kbase media files from other narrative members
+
+    output_media:
+        ui-name : |
+            Media out
+        short-hint: |
+            Output name of coverage table
+        long-hint : |
+            Allows output of coverage table into media file for use in other narrative members
 
 description: |
       <p>This method is used to create a test suite for another application given a list of potential application settings. The method can be used by compliling the possible settings of an application and entering them into the method by name and potential value..</p>
