@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "57e6100e3f17c3f8244e89e94d6d71477254f5f1"
+    GIT_COMMIT_HASH = "c299292ad76b3e914d76570ab1cc2d965378a4a8"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -82,22 +82,30 @@ class Coveringarray:
 
         if 'input_media' not in params:
 
-            for x in range(len(params['container_object'])):
+            #for x in range(len(params['container_object'])):
             # records number of objects with settings",
-                if params['container_object'][x]['option_1'] != "empty":
-                    nameList[(params['container_object'][x]['option_1'])] = len(params['container_object'][x]['option_2'])
-                    for y in range(len(params['container_object'][x]['option_2'])):
-                        valueList.append(params['container_object'][x]['option_2'][y])
+            #    if params['container_object'][x]['option_1'] != "empty":
+            #        nameList[(params['container_object'][x]['option_1'])] = len(params['container_object'][x]['option_2'])
+            #        for y in range(len(params['container_object'][x]['option_2'])):
+            #            valueList.append(params['container_object'][x]['option_2'][y])
+            for setting in params['container_object']:
+                if setting['option_1'] != "empty":
+                    nameList[setting['option_1']] = len(setting['option_2'])
+                    for option in setting['option_2']:
+                        valueList.append(option)
 
 
             #each params["container_object"][x] is a has a list with a name and another list of strings
         else:
 
-            for x in range(len(params['input_media']['Media']['mediacompounds'])):
-                nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
-                valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
-                valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
-
+            #for x in range(len(params['input_media']['Media']['mediacompounds']):
+            #    nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
+            #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
+            #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
+            for compound in params['input_media']['Media']['mediacompounds']:
+                nameList[compound['name']] = 2
+                valueList.append(compound['maxFlux'])
+                valueList.append(compound['minFlux'])
 
 
 
