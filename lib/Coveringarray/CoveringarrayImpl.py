@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "455afe254f82357f02cde3f581f04709857ba897"
+    GIT_COMMIT_HASH = "57e6100e3f17c3f8244e89e94d6d71477254f5f1"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -69,6 +69,8 @@ class Coveringarray:
         #               [variable length x1,x2,xn]
 
 
+
+
         #container_object is a list due to 'allow multiple' = true 
         #each entry in container_object list has its own grouping of settings 1,2,3
         #all entry forms are free form text boxes associated with a known id
@@ -78,16 +80,34 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
 
-        for x in range(len(params['container_object'])):
-        # records number of objects with settings",
-            if params['container_object'][x]['option_1'] != "empty":
-                nameList[(params['container_object'][x]['option_1'])] = len(params['container_object'][x]['option_2'])
-                for y in range(len(params['container_object'][x]['option_2'])):
-                    valueList.append(params['container_object'][x]['option_2'][y])
+        if 'input_media' not in params:
+
+            for x in range(len(params['container_object'])):
+            # records number of objects with settings",
+                if params['container_object'][x]['option_1'] != "empty":
+                    nameList[(params['container_object'][x]['option_1'])] = len(params['container_object'][x]['option_2'])
+                    for y in range(len(params['container_object'][x]['option_2'])):
+                        valueList.append(params['container_object'][x]['option_2'][y])
 
 
-        #each params["container_object"][x] is a has a list with a name and another list of strings
+            #each params["container_object"][x] is a has a list with a name and another list of strings
+        else:
+
+            for x in range(len(params['input_media']['Media']['mediacompounds'])):
+                nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
+                valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
+                valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
+
+
+
+
+            
+            # records number of objects with settings",
+                   
+
+            #each params["container_object"][x] is a has a list with a name and another list of strings
         sampleSize = len(nameList)
+
 
         #nameList = [firefox,network,os]
 
