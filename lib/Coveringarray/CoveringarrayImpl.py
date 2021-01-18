@@ -80,7 +80,7 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
 
-        if params['input_media'] is "":
+        if params['input_media'] is "" or None:
 
             #for x in range(len(params['container_object'])):
             # records number of objects with settings",
@@ -94,7 +94,7 @@ class Coveringarray:
                     for option in setting['option_2']:
                         valueList.append(option)
 
-
+ 
             #each params["container_object"][x] is a has a list with a name and another list of strings
         else:
 
