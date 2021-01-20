@@ -109,7 +109,7 @@ class Coveringarray:
 
            # wsClient = workspaceService(config['workspace-url'],token=token)
 
-            media = dfu.get_objects({'object_refs': [medianame]})
+            media = self.dfu.get_objects({'object_refs': [medianame]})
 
             for compound in media['mediacompounds']:
                 nameList[compound['name']] = 2
