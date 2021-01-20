@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "f5d62ce2890c08b7aec5224c08562870e16c9433"
+    GIT_COMMIT_HASH = "1ce546058e630bf3f03281d9921d6902aeb89ba5"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -115,7 +115,11 @@ class Coveringarray:
                 nameList[compound['name']] = 2
                 valueList.append(compound['minFlux'])
                 valueLust.append(compound['maxFlux'])
-                if()
+               # for modnames in params['container_object']
+               #     if modnames['option_0'] == compound['name']
+               #         compo
+
+
 
             sampleSize = len(nameList)
 
