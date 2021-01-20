@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "22886d0f80b2a4f2b55662dde3126b2ba1a0f73c"
+    GIT_COMMIT_HASH = "f5d62ce2890c08b7aec5224c08562870e16c9433"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -115,11 +115,11 @@ class Coveringarray:
                 nameList[compound['name']] = 2
                 valueList.append(compound['minFlux'])
                 valueLust.append(compound['maxFlux'])
+                if()
 
-            if params['container_object'] is not None:
-                for entry in params['container_object']:
-                    for existingEntry in nameList:
-                        if entry == existingEntry:
+            sampleSize = len(nameList)
+
+            
 
 
 
@@ -134,7 +134,7 @@ class Coveringarray:
                    
 
             #each params["container_object"][x] is a has a list with a name and another list of strings
-        sampleSize = len(nameList)
+       
 
 
         #nameList = [firefox,network,os]
