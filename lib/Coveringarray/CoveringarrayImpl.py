@@ -3,7 +3,7 @@
 import logging
 import os
 
-
+from installed_clients.DataFileUtilClient import DataFileUtil
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
 
@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "99821f46519db7f59af5f2ae8102e4bd52ff0416"
+    GIT_COMMIT_HASH = "ce1d2d47bf020777d6b0795b2cf4bb963294944c"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -35,6 +35,7 @@ class Coveringarray:
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
         self.callback_url = os.environ['SDK_CALLBACK_URL']
+        self.dfu = DataFileUtil(self.callback_url)
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
@@ -102,11 +103,24 @@ class Coveringarray:
             #    nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
-            for compound in params['input_media']['Media']['mediacompounds']:
-                nameList[compound['name']] = 2
-                valueList.append(compound['maxFlux'])
-                valueList.append(compound['minFlux'])
+            medianame = params['input_media']
 
+            
+
+           # wsClient = workspaceService(config['workspace-url'],token=token)
+
+            media = dfu.get_objects({'object_refs': [medianame]})
+
+            for compound in media['mediacompounds']:
+                nameList[compound['name']] = 2
+                valueList.append(compound['minFlux'])
+                valueLust.append(compound['maxFlux'])
+
+
+
+
+
+##================================CANT REACH DATA LIKE THIS ^^ CAN ONLY GET ADDRESS OF MEDIA OBJECT, WHICH CAN BE USED WITH A WORKSPACE CLIENT INSTANCE OT RETRIEVE OBJECT
 
 
             
