@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "4793e5d322793b747b35692f1068d198d8fb7c29"
+    GIT_COMMIT_HASH = "3834cb23a51fb5d9a643311ca539f96802762642"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -103,7 +103,7 @@ class Coveringarray:
             #    nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
-            medianame = params['input_media']
+            medianame = params['workspace_name']+"/"+params['input_media']
 
             
 
