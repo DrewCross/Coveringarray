@@ -109,7 +109,7 @@ class Coveringarray:
 
            # wsClient = workspaceService(config['workspace-url'],token=token)
 
-            media = self.dfu.get_objects({'object_refs': [medianame]})[0]['data']
+            media = self.dfu.get_objects({'object_refs': [medianame]})['data']
 
             print('\n\n ======' + str(media.items()) + '=======\n\n')
                # for modnames in params['container_object']
