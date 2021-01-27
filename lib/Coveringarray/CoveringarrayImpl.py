@@ -122,27 +122,27 @@ class Coveringarray:
            # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
             for compound in mediaComps:
 
-                cref = compound['compound_ref'].split("/")[-1]
-
-                for setting in params['container_object']:
-                    if cref == setting['option_1']:
-                        nameList[cref] = 2
-                        for value in setting['option_2']:
-                            valueList.append(value)
-
-
-                #cref = compound['compound_ref'].split("/")[-1]
-                #nameList[cref] = 2
-
+               # cref = compound['compound_ref'].split("/")[-1]
 
                 #for setting in params['container_object']:
                 #    if cref == setting['option_1']:
-                #       for value in setting['option_2']:
-                #           valueList.append(value)
-                #else:
+                #        nameList[cref] = 2
+                #        for value in setting['option_2']:
+                #            valueList.append(value)
 
-                #    valueList.append(compound['maxFlux'])
-                #    valueList.append(compound['minFlux'])
+
+                cref = compound['compound_ref'].split("/")[-1]
+                nameList[cref] = 2
+
+
+                for setting in params['container_object']:
+                    if cref == setting['option_1']:
+                       for value in setting['option_2']:
+                           valueList.append(value)
+                else:
+
+                    valueList.append(compound['maxFlux'])
+                    valueList.append(compound['minFlux'])
 
 
         sampleSize = len(nameList)
