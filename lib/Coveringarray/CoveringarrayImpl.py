@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "a2432fad3e50dfcd9fa9c339021b71698666e85b"
+    GIT_COMMIT_HASH = "b47a8f7fbb4e7ad6c47ab3db62de4673e6d6975f"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -124,10 +124,11 @@ class Coveringarray:
 
                 cref = compound['compound_ref'].split("/")[-1]
 
-                if cref in params['container_object']:
-                    nameList[cref] = 2
-                    for setting in params['container_object'][cref]:
-                        valueList.append(setting)
+                for setting in params['container_object']:
+                    if cref in setting:
+                        nameList[cref] = 2
+                        for value in setting['option_2']:
+                            valueList.append(value)
 
 
                 #cref = compound['compound_ref'].split("/")[-1]
