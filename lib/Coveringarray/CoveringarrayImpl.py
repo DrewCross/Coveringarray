@@ -116,7 +116,8 @@ class Coveringarray:
                #     if modnames['option_0'] == compound['name']
                #         compo
     
-               mediaComps = media.get("mediacompounds")
+            mediaComps = media.get("mediacompounds")
+            
             print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
             for compound in mediaComps:
                 cref = compound['compound_ref'].split("/")[-1]
