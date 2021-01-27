@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "37191e63662424933e992fb637a80c89aa7ea49d"
+    GIT_COMMIT_HASH = "a2432fad3e50dfcd9fa9c339021b71698666e85b"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -238,7 +238,7 @@ class Coveringarray:
                     if len(line)>2 and c != str(outPutLead):
                         
                             
-                            finaloutputText+= valueList[int(c)]
+                            finaloutputText+= str(valueList[int(c)])
                             finaloutputText+= ","
                     else:
                             finaloutputText+= c
