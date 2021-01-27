@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "da4bb673abcd73ae11aa4e3336b84807f3abba05"
+    GIT_COMMIT_HASH = "37191e63662424933e992fb637a80c89aa7ea49d"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -119,7 +119,7 @@ class Coveringarray:
     
             mediaComps = media.get("mediacompounds")
             
-            print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
+           # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
             for compound in mediaComps:
                 cref = compound['compound_ref'].split("/")[-1]
                 nameList[cref] = 2
