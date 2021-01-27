@@ -111,7 +111,7 @@ class Coveringarray:
 
             media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]
 
-            print('\n\n ======' + media.items() + '=======\n\n')
+            print('\n\n ======' + str(media.items()) + '=======\n\n')
                # for modnames in params['container_object']
                #     if modnames['option_0'] == compound['name']
                #         compo
