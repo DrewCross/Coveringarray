@@ -109,12 +109,13 @@ class Coveringarray:
 
            # wsClient = workspaceService(config['workspace-url'],token=token)
 
-            media = self.dfu.get_objects({'object_refs': [medianame]})
+            media = self.dfu.get_objects({'object_refs': [medianame]})[0]['data']
 
             print('\n\n ======' + str(media.items()) + '=======\n\n')
                # for modnames in params['container_object']
                #     if modnames['option_0'] == compound['name']
                #         compo
+            print(media['id'])
     
             mediaComps = media.get("mediacompounds")
             
