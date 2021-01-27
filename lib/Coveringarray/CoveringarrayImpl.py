@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "e1b943c21edd88f6644f5ad91324bc3247151971"
+    GIT_COMMIT_HASH = "a46c29cbd427e01757478a0731b319c2ba3791b4"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -111,11 +111,13 @@ class Coveringarray:
 
             media = self.dfu.get_objects({'object_refs': [medianame]})['data']
 
-            #print('\n\n ======' + str(media.items()) + '=======\n\n')
+            print('\n\n ======' + str(media.items()) + '=======\n\n')
                # for modnames in params['container_object']
                #     if modnames['option_0'] == compound['name']
                #         compo
-            mediaComps = media[4]
+            mediaComps = media[0]
+
+            print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
             for compound in mediaComps:
                 cref = compound['compound_ref'].split("/")[-1]
                 nameList[cref] = 2
