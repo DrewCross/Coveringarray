@@ -125,7 +125,7 @@
                     "target_property": "container_object"
                 },{
                     "input_parameter": "inclusive_toggle",
-                    "target_property": "invlusive_toggle"
+                    "target_property": "inclusive_toggle"
                 }
 
             ],
