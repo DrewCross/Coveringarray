@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "6cc6ff199d45e1753b04f46b1b18bb2c5b4dd0a1"
+    GIT_COMMIT_HASH = "a87398c547b8d97f937d876ec4567a5d9a4e1f01"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -81,7 +81,7 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
 
-        if params['input_media'] is "" or None:
+        if params['input_media'] is "" or params['input_media'] is None:
 
             #for x in range(len(params['container_object'])):
             # records number of objects with settings",
