@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "d7921f354c1a8890671417626af54d893fe277fd"
+    GIT_COMMIT_HASH = "6cc6ff199d45e1753b04f46b1b18bb2c5b4dd0a1"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -76,7 +76,7 @@ class Coveringarray:
         #each entry in container_object list has its own grouping of settings 1,2,3
         #all entry forms are free form text boxes associated with a known id
         # of measuring strenth and factors through volume of known id, and pairs through combinations of known id,
-        #user input never is used in the program
+        #user input never is used in the program to keep track of order
         # after coveringarray output is obtained, the container object list is used to swap id with text form entries.
         # strength = params["strength"]
         strength = int(params['option_0'])
@@ -120,29 +120,40 @@ class Coveringarray:
             mediaComps = media.get("mediacompounds")
             
            # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
-            for compound in mediaComps:
 
-               # cref = compound['compound_ref'].split("/")[-1]
+            crefMatch = 0
 
-                #for setting in params['container_object']:
-                #    if cref == setting['option_1']:
-                #        nameList[cref] = 2
-                #        for value in setting['option_2']:
-                #            valueList.append(value)
+            if params["inclusive_toggle"] == 1:
+                for compound in mediaComps:
+                    crefMatch = 0
+                    cref = compound['compound_ref'].split("/")[-1]
 
 
-                cref = compound['compound_ref'].split("/")[-1]
-                nameList[cref] = 2
+                    for setting in params['container_object']:
+                        if cref == setting['option_1']:
+                            crefMatch = 1
+                            nameList[cref] = len(setting['option_2'])
+                            for value in setting['option_2']:
+                                valueList.append(value)
+
+                    if crefMatch == 0:
+                        nameList[cref] = 2
+                        valueList.append(compound['maxFlux'])
+                        valueList.append(0)
+
+            elif params["inclusive_toggle"] == 0:
+                for compound in mediaComps:
+
+                    cref = compound['compound_ref'].split("/")[-1]
+
+                    for setting in params['container_object']:
+                        if cref == setting['option_1']:
+                            nameList[cref] = len(setting['option_2'])
+                            for value in setting['option_2']:
+                                valueList.append(value)
 
 
-                for setting in params['container_object']:
-                    if cref == setting['option_1']:
-                       for value in setting['option_2']:
-                           valueList.append(value)
-                else:
 
-                    valueList.append(compound['maxFlux'])
-                    valueList.append(compound['minFlux'])
 
 
         sampleSize = len(nameList)

@@ -71,7 +71,24 @@
             "field_type": "text",
             "text_options": {
                 "valid_ws_types":[ "KBaseBiochem.Media"]
-        }
+            }
+        },
+        { 
+            "id": "inclusive_toggle",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "0" ],
+            "field_type": "checkbox",
+            "checkbox_options":{
+                "unchecked_value": 0,
+                "checked_value": 1
+            },
+            "text_options": {
+                "valid_ws_types":[]
+            }
+
+
     }
             
         
@@ -106,6 +123,9 @@
                 },{
                     "input_parameter": "container_object",
                     "target_property": "container_object"
+                },{
+                    "input_parameter": "inclusive_toggle",
+                    "target_property": "invlusive_toggle"
                 }
 
             ],
