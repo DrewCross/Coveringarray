@@ -123,7 +123,7 @@ class Coveringarray:
 
             crefMatch = 0
 
-            if params["inclusive_toggle"] == 1:
+            if params['inclusive_toggle'] == 1:
                 for compound in mediaComps:
                     crefMatch = 0
                     cref = compound['compound_ref'].split("/")[-1]
@@ -141,7 +141,7 @@ class Coveringarray:
                         valueList.append(compound['maxFlux'])
                         valueList.append(0)
 
-            elif params["inclusive_toggle"] == 0:
+            elif params['inclusive_toggle'] == 0:
                 for compound in mediaComps:
 
                     cref = compound['compound_ref'].split("/")[-1]
