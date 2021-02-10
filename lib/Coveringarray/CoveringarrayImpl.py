@@ -25,7 +25,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "a87398c547b8d97f937d876ec4567a5d9a4e1f01"
+    GIT_COMMIT_HASH = "9245427598b8fb01aa8130c61bddf1bf0f4db78a"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -103,7 +103,7 @@ class Coveringarray:
             #    nameList[(params['input_media']['Media']['mediacompounds'][x]['name'])] = 2 ##amount of flux options (max or 0 right now)
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['maxFlux'])
             #    valueList.append(params['input_media']['Media']['mediacompounds'][x]['minFlux']) ##assign as minFlux or hardcode to 0?
-            medianame = params['workspace_name']+"/"+params['input_media']
+            medianame = params['workspace_name']+"/"+str(params['input_media'][0])
 
             
 
@@ -111,7 +111,7 @@ class Coveringarray:
 
             media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
 
-            print('\n\n ======' + str(media.items()) + '=======\n\n')
+          #  print('\n\n ======' + str(media.items()) + '=======\n\n')
                # for modnames in params['container_object']
                #     if modnames['option_0'] == compound['name']
                #         compo
@@ -121,9 +121,12 @@ class Coveringarray:
             
            # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
 
+
             crefMatch = 0
+            print("\n\n==cref match init"+"==\n\n")
 
             if params['inclusive_toggle'] == 1:
+                print("\n\n== Toggle=1 recognized ==\n\n")
                 for compound in mediaComps:
                     crefMatch = 0
                     cref = compound['compound_ref'].split("/")[-1]
@@ -142,6 +145,8 @@ class Coveringarray:
                         valueList.append(0)
 
             elif params['inclusive_toggle'] == 0:
+                print("\n\n== Toggle=1 recognized ==\n\n")
+
                 for compound in mediaComps:
 
                     cref = compound['compound_ref'].split("/")[-1]
@@ -157,6 +162,7 @@ class Coveringarray:
 
 
         sampleSize = len(nameList)
+        print("\n\n== samplesize adjusted ==\n\n")
 
             
 
