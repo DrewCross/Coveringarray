@@ -90,7 +90,7 @@ class Coveringarray:
             # each params["container_object"][x] is a has a list with a name
             # and another list of strings
         else:
-            medianame = params['workspace_name']+"/"+str(params['input_media'][0])
+            medianame = params['workspace_name']+"/"+str(params['input_media'])
 
             media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
 
