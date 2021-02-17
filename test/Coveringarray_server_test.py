@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import subprocess
 import time
 import unittest
 from configparser import ConfigParser
@@ -73,7 +74,24 @@ class CoveringarrayTest(unittest.TestCase):
     
     def testManualInput(self):
 
-        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574","concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
+        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
 
         #weka has the object saved in the setupclass method
         mediaObject = self.getWsClient().save_objects({'workspace': self.getWsName(),'objects': [{'name':'Mediain',
@@ -90,13 +108,32 @@ class CoveringarrayTest(unittest.TestCase):
         # self.assertEqual(ret[...], ...) or other unittest methods
         ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName,'option_0':"2",
                                                             'container_object': [{"option_1":"Firefox", "option_2":["on","off"]},
-                                                            	{"option_1":"Network", "option_2":["on","off"]},
-                                                            	{"option_1":"Feature", "option_2":["ready","unready","unsure"]},{"option_1":"os", "option_2":["low","medium","high","very high"]}
-                                                            	],
+                                                                {"option_1":"Network", "option_2":["on","off"]},
+                                                                {"option_1":"Feature", "option_2":["ready","unready","unsure"]},{"option_1":"os", "option_2":["low","medium","high","very high"]}
+                                                                ],
                                                             'input_media':'','inclusive_toggle':0})
-    def testMediaInput(self):
-        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574","concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
 
+        arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
+        self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
+    def testMediaInput(self):
+        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
         #weka has the object saved in the setupclass method
         mediaObject = self.getWsClient().save_objects({'workspace': self.getWsName(),'objects': [{'name':'Mediain',
                                                                     'type':'KBaseBiochem.Media',
@@ -105,11 +142,29 @@ class CoveringarrayTest(unittest.TestCase):
 
         
         ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName, 'container_object':[{'option_1':'','option_2':''}],'option_0':"2",'input_media':mediaObject,'inclusive_toggle':1})
+        arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
+        self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         #identify consistent member of tool output that indicates success
         #self.assertEqual(ret, "OK")
     def testManualandMediaInputExclusive(self):
-        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574","concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
-
+        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
         #weka has the object saved in the setupclass method
         mediaObject = self.getWsClient().save_objects({'workspace': self.getWsName(),'objects': [{'name':'Mediain',
                                                                     'type':'KBaseBiochem.Media',
@@ -121,13 +176,31 @@ class CoveringarrayTest(unittest.TestCase):
                                                                 {"option_1":"cpd00009", "option_2":["100","0"]}
                                                                 ],
                                                             'input_media':mediaObject,'inclusive_toggle':0})
+        arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
+        self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         
 
 
 
     def testManualandMediaInputInclusive(self):
-        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574","concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
-
+        testMedia = {"__VERSION__":1,"id":"kb|media.664","isDefined":0,"isMinimal":0,"mediacompounds":[{"compound_ref":"kbase/default/compounds/id/cpd00205",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00242","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00048","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00009",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00007","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00013","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00971",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00067","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00001","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00036",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00100","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00023","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00027",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd10516","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00058","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00099",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00137","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00063","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00254",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00030","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd00034","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00149",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd00244","concentration":0.001,"maxFlux":100,"minFlux":-100},
+        {"compound_ref":"kbase/default/compounds/id/cpd10515","concentration":0.001,"maxFlux":100,"minFlux":-100},{"compound_ref":"kbase/default/compounds/id/cpd11574",
+        "concentration":0.001,"maxFlux":100,"minFlux":-100}],"name":"7H9","source_id":"7H9","type":"unspecified"}
         #weka has the object saved in the setupclass method
         mediaObject = self.getWsClient().save_objects({'workspace': self.getWsName(),'objects': [{'name':'Mediain',
                                                                     'type':'KBaseBiochem.Media',
@@ -140,6 +213,8 @@ class CoveringarrayTest(unittest.TestCase):
                                                                 {"option_1":"cpd00007", "option_2":["70","60"]}
                                                                 ],
                                                             'input_media':mediaObject, 'inclusive_toggle':1})
+        arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
+        self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         #sef.assertEqual(ret, "OK")
 
 

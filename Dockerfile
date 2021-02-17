@@ -17,7 +17,9 @@ RUN chmod -R a+rw /kb/module
 
 WORKDIR /kb/module
 RUN  curl -L -O https://github.com/DrewCross/citHost/raw/master/cover  && \
-	chmod +x /kb/module/cover
+curl -L -O https://github.com/DrewCross/citHost/raw/master/checkpairs &&\
+chmod +x /kb/module/cover && chmod +x /kb/module/checkpairs
+	
 RUN make all
 
 ENTRYPOINT [ "./scripts/entrypoint.sh" ]
