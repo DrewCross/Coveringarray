@@ -1,9 +1,9 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #BEGIN_HEADER
 import logging
 import os
 
-
+from biokbase.workspace.client import Workspace
 from installed_clients.DataFileUtilClient import DataFileUtil
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
@@ -26,7 +26,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "8e42fea9bbb2ec3455a32cec1bdc7d3cd4980195"
+    GIT_COMMIT_HASH = "846012f78bfb1d35177b3f8c4b350e055f04614a"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -40,8 +40,10 @@ class Coveringarray:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
+        self.workspaceURL = config['workspace-url']
         #END_CONSTRUCTOR
         pass
+
 
     def run_Coveringarray(self, ctx, params):
         """
@@ -175,27 +177,52 @@ class Coveringarray:
         outputfile = open("anneal.out", 'r')
 
         finaloutputText = " "
+        trimmedOutFile = ""
+
+        matrixData = {
+        "row_ids":[],
+        "column_ids":[],
+        "row_labels":['combinations'],
+        "column_labels":['compounds'],
+        "row_groups_ids":['1'],
+        "column_groups_ids":['1'],
+        "data":[[]]
+
+
+        }        
+
+        
 
         for name in nameList:
             finaloutputText += name
             finaloutputText += " "
+            matrixData["row_ids"].append(name)
+
 
         finaloutputText += "\n ==================== \n"
+
+      
+
         # count by line instead, look for empty line followed by length 1 line to start
         matrixReadFlag = 0
         outPutLead = 0
         for line in outputfile:
 
             if outPutLead != 0 and matrixReadFlag == 10:
+                matrixData["row_ids"].append('row')
                 for c in line.split():
                     if len(line) > 2 and c != str(outPutLead):
 
                         finaloutputText += str(valueList[int(c)])
                         finaloutputText += ","
+                        trimmedOutFile += c
+                        trimmedOutFile += ","
                     else:
 
                         finaloutputText += c
                         finaloutputText += ","
+                        trimmedOutFile += c
+                        trimmedOutFile += ","
 
                 finaloutputText = finaloutputText[:-1]
                 finaloutputText += "\n"
@@ -210,20 +237,45 @@ class Coveringarray:
             if(line == "\n" and len(line) == 1):
                 matrixReadFlag += 1
 
+
+        matrixData["data"]=[[] for i in range(len(matrixData["row_ids"]))]
+
+        for row in range(len(matrixData["column_ids"])):
+            for column in range(len(matrixData["row_ids"])):
+
+                matrixData["data"][row][column] = trimmedOutFile.split()[row*column]
+            
+
+        
+
+       
+
+
         print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n" + rawout)
+
+
+        
+
+        workspaceClient = Workspace(self.workspaceURL,token = ctx['token'])
+
+        matrixObject = workspaceClient.save_objects({'workspace': params['workspace_name'],
+                                                    'objects': [{'name':params['output_media'],
+                                                    'type':'MAK.StringDataTable',
+                                                    'data': matrixData}]
+                                                                    })
 
 
 # each value is organizated by order, with pairs grouped
 
+     
         report = KBaseReport(self.callback_url)
-        report_info = report.create({'report': {'objects_created': [],
+        report_info = report.create({'report': {
                                     'text_message': finaloutputText},
                                     'workspace_name': params['workspace_name']
                                     })
         output = {
             'report_name': report_info['name'],
             'report_ref': report_info['ref'],
-            'raw_output': rawout
         }
         #END run_Coveringarray
 

@@ -111,7 +111,8 @@ class CoveringarrayTest(unittest.TestCase):
                                                                 {"option_1":"Network", "option_2":["on","off"]},
                                                                 {"option_1":"Feature", "option_2":["ready","unready","unsure"]},{"option_1":"os", "option_2":["low","medium","high","very high"]}
                                                                 ],
-                                                            'input_media':'','inclusive_toggle':0})
+                                                            'input_media':'','inclusive_toggle':0,
+                                                            'output_media':'matrixout'})
 
         arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
         self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
@@ -141,7 +142,7 @@ class CoveringarrayTest(unittest.TestCase):
                                                                     })[0]
 
         
-        ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName, 'container_object':[{'option_1':'','option_2':''}],'option_0':"2",'input_media':mediaObject[0],'inclusive_toggle':1})
+        ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName, 'container_object':[{'option_1':'','option_2':''}],'option_0':"2",'input_media':mediaObject[0],'inclusive_toggle':1,'output_media':'matrixout'})
         arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
         self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         #identify consistent member of tool output that indicates success
@@ -173,9 +174,9 @@ class CoveringarrayTest(unittest.TestCase):
 
         ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName,'option_0':"2",
                                                             'container_object': [{"option_1":"cpd00007", "option_2":["100","0"]},
-                                                                {"option_1":"cpd00009", "option_2":["100","0"]}
+                                                                {"option_1":"cpd00009", "option_2":["100","0"],'output_media':'matrixout'}
                                                                 ],
-                                                            'input_media':mediaObject[0],'inclusive_toggle':0})
+                                                            'input_media':mediaObject[0],'inclusive_toggle':0,'output_media':'matrixout'})
         arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
         self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         
@@ -210,9 +211,9 @@ class CoveringarrayTest(unittest.TestCase):
 
         ret = self.serviceImpl.run_Coveringarray(self.ctx, {'workspace_name': self.wsName,'option_0':"2",
                                                             'container_object': [{"option_1":"cpd00009", "option_2":["90","80"]},
-                                                                {"option_1":"cpd00007", "option_2":["70","60"]}
+                                                                {"option_1":"cpd00007", "option_2":["70","60"],'output_media':'matrixout'}
                                                                 ],
-                                                            'input_media':mediaObject[0], 'inclusive_toggle':1})
+                                                            'input_media':mediaObject[0], 'inclusive_toggle':1,'output_media':'mediaout'})
         arrayValid = int(subprocess.check_output(['/kb/module/./checkpairs','/kb/module/anneal.out']))
         self.assertEqual(arrayValid,0,"Produced incorrect coverage array")
         #sef.assertEqual(ret, "OK")

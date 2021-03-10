@@ -39,7 +39,7 @@
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "empty" ],
+            "default_values": [ "" ],
             "field_type": "text"
             
         },
@@ -48,7 +48,7 @@
             "optional": false,
             "advanced": false,
             "allow_multiple": true,
-            "default_values": [ "empty" ],
+            "default_values": [ "" ],
             "field_type": "text"
         },
         {
@@ -68,10 +68,8 @@
             "advanced": false,
             "allow_multiple": false,
             "default_values": [ "" ],
-            "field_type": "text",
-            "text_options": {
-                "valid_ws_types":[ "KBaseBiochem.Media"]
-            }
+            "field_type": "text"
+            
         },
         { 
             "id": "inclusive_toggle",
