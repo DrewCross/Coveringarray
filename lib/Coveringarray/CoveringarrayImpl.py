@@ -215,7 +215,7 @@ class Coveringarray:
 
                         finaloutputText += str(valueList[int(c)])
                         finaloutputText += ","
-                        trimmedOutFile += c
+                        trimmedOutFile += str(valueList[int(c)])
                         trimmedOutFile += ","
                     else:
 
