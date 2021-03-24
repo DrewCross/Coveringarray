@@ -196,7 +196,7 @@ class Coveringarray:
         for name in nameList:
             finaloutputText += name
             finaloutputText += " "
-            matrixData["row_ids"].append(name)
+            matrixData["column_ids"].append(name)
 
 
         finaloutputText += "\n ==================== \n"
@@ -240,10 +240,12 @@ class Coveringarray:
 
         matrixData["data"]=[[] for i in range(len(matrixData["row_ids"]))]
 
-        for row in range(len(matrixData["column_ids"])):
-            for column in range(len(matrixData["row_ids"])):
+        listversion = [n.strip() for n in trimmedOutFile.split(',')]
 
-                matrixData["data"][row][column] = trimmedOutFile.split()[row*column]
+        for row in range(len(matrixData["row_ids"])):
+            for column in range(len(matrixData["column_ids"])):
+
+                matrixData["data"][row].append(listversion[row*column])
             
 
         
