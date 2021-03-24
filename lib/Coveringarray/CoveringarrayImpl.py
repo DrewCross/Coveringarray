@@ -245,7 +245,7 @@ class Coveringarray:
         for row in range(len(matrixData["row_ids"])):
             for column in range(len(matrixData["column_ids"])):
 
-                matrixData["data"][row].append(listversion[column+(max((row-1),0)*len(matrixData["column_ids"]))])
+                matrixData["data"][row].append(listversion[column+(row)*len(matrixData["column_ids"])])
             
 
         
