@@ -72,19 +72,25 @@
             
         },
         { 
-            "id": "inclusive_toggle",
+            "id": "evaluation_options",
             "optional": false,
             "advanced": true,
             "allow_multiple": false,
             "default_values": [ 1 ],
-            "field_type": "checkbox",
-            "checkbox_options":{
-                "unchecked_value": 0,
-                "checked_value": 1
-            },
-            "text_options": {
-                "valid_ws_types":[]
+            "field_type": "dropdown",
+            "dropdown_options":{
+                "options":[{
+                    "value":"overwrite_media",
+                    "display":"Overwrite Specified Media Elements"
+                }, {
+                    "value":"append_media",
+                    "display":"Appended Elements to Media"
+                }, {
+                    "value":"isolate_media",
+                    "display":"Evaluate Isolated Media Elements"}]
+                
             }
+            
 
 
     }
@@ -122,8 +128,8 @@
                     "input_parameter": "container_object",
                     "target_property": "container_object"
                 },{
-                    "input_parameter": "inclusive_toggle",
-                    "target_property": "inclusive_toggle"
+                    "input_parameter": "evaluation_options",
+                    "target_property": "evaluation_options"
                 }
 
             ],

@@ -79,9 +79,9 @@ parameters:
         long-hint : |
             Allows output of coverage table into media file for use in other narrative members
 
-    inclusive_toggle:
+    evaluation_options:
         ui-name : |
-            Enable inclusive testing
+            Select mode of input evaluation
         short-hint: |
             Enables testing of the entire media file surrounding the specified values
         long-hint: |

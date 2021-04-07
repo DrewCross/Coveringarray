@@ -84,7 +84,7 @@ class Coveringarray:
         if params['input_media'] == "" or params['input_media'] is None:  # flake8 change
 
             for setting in params['container_object']:
-                if setting['option_1'] != "empty":
+                if setting['option_1'] != "":
                     nameList[setting['option_1']] = len(setting['option_2'])
                     for option in setting['option_2']:
                         valueList.append(option)
@@ -108,36 +108,53 @@ class Coveringarray:
             crefMatch = 0
             print("\n\n==cref match init"+"==\n\n")
 
-            if params['inclusive_toggle'] == 1:
-                print("\n\n== Toggle=1 recognized ==\n\n")
+            if params['evaluation_options'] == 'append_media':
+                print("\n\n== Append Element Mode ==\n\n")
                 for compound in mediaComps:
-                    crefMatch = 0
+                    
+                    cref = compound['compound_ref'].split("/")[-1]
+                    nameList[cref] = 2
+                    valueList.append(compound['maxFlux'])
+                    valueList.append(0)
+
+                for setting in params['container_object']:
+                    if setting['option_1'] != "":
+                        nameList[setting['option_1']] = len(setting['option_2'])
+                        for option in setting['option_2']:
+                            valueList.append(option)
+
+
+                   
+
+            elif params['evaluation_options'] == 'overwrite_media':
+                print("\n\n== Overwrite Media Elements Mode ==\n\n")
+
+                for compound in mediaComps:
+
                     cref = compound['compound_ref'].split("/")[-1]
 
                     for setting in params['container_object']:
                         if cref == setting['option_1']:
-                            crefMatch = 1
                             nameList[cref] = len(setting['option_2'])
                             for value in setting['option_2']:
                                 valueList.append(value)
 
-                    if crefMatch == 0:
-                        nameList[cref] = 2
-                        valueList.append(compound['maxFlux'])
-                        valueList.append(0)
-
-            elif params['inclusive_toggle'] == 0:
-                print("\n\n== Toggle=0 recognized ==\n\n")
+            elif params['evaluation_options'] == 'isolate_media':
+                print("\n\n== Overwrite Media Elements Mode ==\n\n")
 
                 for compound in mediaComps:
-
                     cref = compound['compound_ref'].split("/")[-1]
 
                     for setting in params['container_object']:
                         if cref == setting['option_1']:
-                            nameList[cref] = len(setting['option_2'])
-                            for value in setting['option_2']:
-                                valueList.append(value)
+                            nameList[cref] = 2
+                            valueList.append(compound['maxFlux'])
+                            valueList.append(0)
+
+
+
+
+
 
         sampleSize = len(nameList)
         print("\n\n== samplesize adjusted ==\n\n")
