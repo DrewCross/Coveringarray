@@ -59,7 +59,7 @@
             "default_values": [ "No Media" ],
             "field_type": "text",
             "text_options": {
-                "valid_ws_types":[ "KBaseBiochem.Media"]
+                "valid_ws_types":[ "KBaseBiochem.Media","text"]
             }
         },
         { 
@@ -129,7 +129,7 @@
                     "target_property": "container_object"
                 },{
                     "input_parameter": "evaluation_options",
-                    "target_property": "eval_option"
+                    "target_property": "evaluation_options"
                 }
 
             ],

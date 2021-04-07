@@ -26,7 +26,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "735500402444cd9bf4131a24bc9c5c935a11ee27"
+    GIT_COMMIT_HASH = "eb4fdf080307375bd8f90fff332e22de653d917a"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
