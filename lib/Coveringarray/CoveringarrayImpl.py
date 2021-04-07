@@ -26,7 +26,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "e22474d997d9871375f826c06713362ed30651b3"
+    GIT_COMMIT_HASH = "de633aaff3b01126da4ee334fb644787dc4c7057"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -108,7 +108,7 @@ class Coveringarray:
             crefMatch = 0
             print("\n\n==cref match init"+"==\n\n")
 
-            if params['evaluation_options'] == 'append_media':
+            if params['eval_option'] == 'append_media':
                 print("\n\n== Append Element Mode ==\n\n")
                 for compound in mediaComps:
                     
@@ -126,7 +126,7 @@ class Coveringarray:
 
                    
 
-            elif params['evaluation_options'] == 'overwrite_media':
+            elif params['eval_option'] == 'overwrite_media':
                 print("\n\n== Overwrite Media Elements Mode ==\n\n")
 
                 for compound in mediaComps:
@@ -139,7 +139,7 @@ class Coveringarray:
                             for value in setting['option_2']:
                                 valueList.append(value)
 
-            elif params['evaluation_options'] == 'isolate_media':
+            elif params['eval_option'] == 'isolate_media':
                 print("\n\n== Overwrite Media Elements Mode ==\n\n")
 
                 for compound in mediaComps:

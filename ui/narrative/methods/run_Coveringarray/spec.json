@@ -129,7 +129,7 @@
                     "target_property": "container_object"
                 },{
                     "input_parameter": "evaluation_options",
-                    "target_property": "evaluation_options"
+                    "target_property": "eval_option"
                 }
 
             ],
