@@ -26,7 +26,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "846012f78bfb1d35177b3f8c4b350e055f04614a"
+    GIT_COMMIT_HASH = "e22474d997d9871375f826c06713362ed30651b3"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -306,12 +306,6 @@ class Coveringarray:
                              'output is not type dict as required.')
         # return the results
         return [output]
-
-    def gen_html_table(self,matrixData):
-
-
-
-
     def status(self, ctx):
         #BEGIN_STATUS
         returnVal = {'state': "OK",
