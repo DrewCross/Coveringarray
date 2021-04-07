@@ -26,7 +26,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "de633aaff3b01126da4ee334fb644787dc4c7057"
+    GIT_COMMIT_HASH = "735500402444cd9bf4131a24bc9c5c935a11ee27"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -108,7 +108,7 @@ class Coveringarray:
             crefMatch = 0
             print("\n\n==cref match init"+"==\n\n")
 
-            if params['eval_option'] == 'append_media':
+            if params['evaluation_options'] == 'append_media':
                 print("\n\n== Append Element Mode ==\n\n")
                 for compound in mediaComps:
                     
@@ -126,20 +126,30 @@ class Coveringarray:
 
                    
 
-            elif params['eval_option'] == 'overwrite_media':
+            elif params['evaluation_options'] == 'overwrite_media':
+                ow = 0
                 print("\n\n== Overwrite Media Elements Mode ==\n\n")
 
                 for compound in mediaComps:
+                    ow = 0
 
                     cref = compound['compound_ref'].split("/")[-1]
 
                     for setting in params['container_object']:
                         if cref == setting['option_1']:
+                            ow = 1
                             nameList[cref] = len(setting['option_2'])
                             for value in setting['option_2']:
                                 valueList.append(value)
+                    if ow = 0:
+                        nameList[cref] = 2
+                        valueList.append(compound['maxFlux'])
+                        valueList.append(0)
 
-            elif params['eval_option'] == 'isolate_media':
+
+
+
+            elif params['evaluation_options'] == 'isolate_media':
                 print("\n\n== Overwrite Media Elements Mode ==\n\n")
 
                 for compound in mediaComps:
