@@ -141,7 +141,7 @@ class Coveringarray:
                             nameList[cref] = len(setting['option_2'])
                             for value in setting['option_2']:
                                 valueList.append(value)
-                    if ow = 0:
+                    if ow == 0:
                         nameList[cref] = 2
                         valueList.append(compound['maxFlux'])
                         valueList.append(0)
