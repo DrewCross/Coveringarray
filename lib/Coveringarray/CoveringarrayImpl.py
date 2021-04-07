@@ -81,7 +81,7 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
 
-        if params['input_media'] == "" or params['input_media'] is None:  # flake8 change
+        if params['input_media'] == "" or params['input_media'] is None or params['input_media'] == 'No Media':  # flake8 change
 
             for setting in params['container_object']:
                 if setting['option_1'] != "":
