@@ -127,7 +127,7 @@ class Coveringarray:
                         valueList.append(0)
 
             elif params['inclusive_toggle'] == 0:
-                print("\n\n== Toggle=1 recognized ==\n\n")
+                print("\n\n== Toggle=0 recognized ==\n\n")
 
                 for compound in mediaComps:
 
@@ -258,11 +258,11 @@ class Coveringarray:
         print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n" + rawout)
 
 
-        
+        if params['output_media'] is not None:
 
-        workspaceClient = Workspace(self.workspaceURL,token = ctx['token'])
+            workspaceClient = Workspace(self.workspaceURL,token = ctx['token'])
 
-        matrixObject = workspaceClient.save_objects({'workspace': params['workspace_name'],
+            matrixObject = workspaceClient.save_objects({'workspace': params['workspace_name'],
                                                     'objects': [{'name':params['output_media'],
                                                     'type':'MAK.StringDataTable',
                                                     'data': matrixData}]
@@ -287,7 +287,7 @@ class Coveringarray:
         #report_info = report.create_extended_report(report_params)
         output = {
             'report_name': 'placeholder name',
-            'report_ref': 'placeholder info',
+            'report_ref': 'placeholder info'
         }
         #END run_Coveringarray
 
