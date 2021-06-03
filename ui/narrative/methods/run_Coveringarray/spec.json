@@ -53,10 +53,10 @@
         },
         {
             "id": "input_media",
-            "optional": true,
+            "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "No Media" ],
+            "default_values": [ "" ],
             "field_type": "text",
             "text_options": {
                 "valid_ws_types":[ "KBaseBiochem.Media","text"]

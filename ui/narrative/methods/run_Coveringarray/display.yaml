@@ -73,19 +73,21 @@ parameters:
 
     output_media:
         ui-name : |
-            Media out
+            File out
         short-hint: |
             Output name of coverage table
         long-hint : |
-            Allows output of coverage table into media file for use in other narrative members
+            Allows output of coverage table into json file for use in other narrative members
 
     evaluation_options:
         ui-name : |
             Select mode of input evaluation
         short-hint: |
-            Enables testing of the entire media file surrounding the specified values
+            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or search for and evaluate said elements in a media input
         long-hint: |
-            Unchecked: Tool will only test the manually specified compounds, Checked: Tool will overwrite or add specified compounds to the test, in addition to all compounds in media
+            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or search for and evaluate said elements in a media input
+
+            
 
 description: |
-      <p>This method is used to create a test suite for another application given a list of potential application settings. The method can be used by compliling the possible settings of an application and entering them into the method by name and potential value..</p>
+      <p>This method is used to create a test suite for arbitrary input given a list varibles and their potential values. </p>
