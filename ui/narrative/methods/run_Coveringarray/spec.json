@@ -59,7 +59,7 @@
             "default_values": [ "" ],
             "field_type": "text",
             "text_options": {
-                "valid_ws_types":[ "KBaseBiochem.Media"]
+                "valid_ws_types":[ ]
             }
         },
         { 
