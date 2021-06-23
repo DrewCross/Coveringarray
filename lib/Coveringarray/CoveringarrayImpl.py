@@ -333,7 +333,7 @@ class Coveringarray:
                 self.minFlux = minFlux
                 self.maxFlux = maxFlux
             def __copy__(self):
-                return MediaCompound(self.compound_ref)
+                return MediaCompound(self.compound_ref,self.concentration,self.minFlux,self.maxFlux)
             def __deepcopy__(self,memo):
                 return MediaCompound(copy.deepcopy(self.compound_ref,memo))
 
