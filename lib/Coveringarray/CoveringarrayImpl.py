@@ -2,7 +2,7 @@
 #BEGIN_HEADER
 import logging
 import os
-
+import copy
 from biokbase.workspace.client import Workspace
 from installed_clients.DataFileUtilClient import DataFileUtil
 from installed_clients.KBaseReportClient import KBaseReport
@@ -80,86 +80,101 @@ class Coveringarray:
         # to swap id with text form entries.
         # strength = params["strength"]
         strength = int(params['option_0'])
-
-        if params['input_media'] == "" or params['input_media'] is None or params['input_media'] == 'No Media':  # flake8 change
-
-            for setting in params['container_object']:
-                if setting['option_1'] != "":
-                    nameList[setting['option_1']] = len(setting['option_2'])
-                    for option in setting['option_2']:
-                        valueList.append(option)
-
-            # each params["container_object"][x] is a has a list with a name
-            # and another list of strings
-        else:
-            medianame = params['workspace_name']+"/"+str(params['input_media'])
-
-            media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
-
-            # print('\n\n ======' + str(media.items()) + '=======\n\n')
-            # for modnames in params['container_object']
-            #     if modnames['option_0'] == compound['name']
-            #         compo
-            print(media['id'])
-
-            mediaComps = media.get("mediacompounds")
-
-            # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
-            crefMatch = 0
-            print("\n\n==cref match init"+"==\n\n")
-
-            if params['evaluation_options'] == 'append_media':
-                print("\n\n== Append Element Mode ==\n\n")
-                for compound in mediaComps:
-                    
-                    cref = compound['compound_ref'].split("/")[-1]
-                    nameList[cref] = 2
-                    valueList.append(compound['maxFlux'])
-                    valueList.append(0)
+        #try catch for lack in media object failure
+        if params['input_media'] == "" or params['input_media'] is None:  # flake8 change
+            try:
 
                 for setting in params['container_object']:
                     if setting['option_1'] != "":
                         nameList[setting['option_1']] = len(setting['option_2'])
                         for option in setting['option_2']:
                             valueList.append(option)
+            except:
+                print("Failed to read in non-media input")
+
+            # each params["container_object"][x] is a has a list with a name
+            # and another list of strings
+        else:
+            #try catch for media object retreival failure
+            try:
+                medianame = params['workspace_name']+"/"+str(params['input_media'])
+
+                media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
+
+                # print('\n\n ======' + str(media.items()) + '=======\n\n')
+                # for modnames in params['container_object']
+                #     if modnames['option_0'] == compound['name']
+                #         compo
+                print(media['id'])
+
+                mediaComps = media.get("mediacompounds")
+
+                # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
+                crefMatch = 0
+                print("\n\n==cref match init"+"==\n\n")
+            except:
+                print("Media read in failure")
 
 
-                   
-
-            elif params['evaluation_options'] == 'overwrite_media':
-                ow = 0
-                print("\n\n== Overwrite Media Elements Mode ==\n\n")
-
-                for compound in mediaComps:
-                    ow = 0
-
-                    cref = compound['compound_ref'].split("/")[-1]
-
-                    for setting in params['container_object']:
-                        if cref == setting['option_1']:
-                            ow = 1
-                            nameList[cref] = len(setting['option_2'])
-                            for value in setting['option_2']:
-                                valueList.append(value)
-                    if ow == 0:
+            try:
+                if params['evaluation_options'] == 'append_media':
+                    print("\n\n== Append Element Mode ==\n\n")
+                    for compound in mediaComps:
+                        
+                        cref = compound['compound_ref'].split("/")[-1]
                         nameList[cref] = 2
                         valueList.append(compound['maxFlux'])
                         valueList.append(0)
 
-
-
-
-            elif params['evaluation_options'] == 'isolate_media':
-                print("\n\n== Overwrite Media Elements Mode ==\n\n")
-
-                for compound in mediaComps:
-                    cref = compound['compound_ref'].split("/")[-1]
-
                     for setting in params['container_object']:
-                        if cref == setting['option_1']:
+                        if setting['option_1'] != "":
+                            nameList[setting['option_1']] = len(setting['option_2'])
+                            for option in setting['option_2']:
+                                valueList.append(option)
+            except:
+                print("Append media option failure")
+
+
+                   
+            try:
+                if params['evaluation_options'] == 'overwrite_media':
+                    ow = 0
+                    print("\n\n== Overwrite Media Elements Mode ==\n\n")
+
+                    for compound in mediaComps:
+                        ow = 0
+
+                        cref = compound['compound_ref'].split("/")[-1]
+
+                        for setting in params['container_object']:
+                            if cref == setting['option_1']:
+                                ow = 1
+                                nameList[cref] = len(setting['option_2'])
+                                for value in setting['option_2']:
+                                    valueList.append(value)
+                        if ow == 0:
                             nameList[cref] = 2
                             valueList.append(compound['maxFlux'])
                             valueList.append(0)
+            except:
+                print("Overwrite media option failure")
+
+
+
+            try:
+                if params['evaluation_options'] == 'isolate_media':
+                    print("\n\n== Overwrite Media Elements Mode ==\n\n")
+
+                    for compound in mediaComps:
+                        cref = compound['compound_ref'].split("/")[-1]
+
+                        for setting in params['container_object']:
+                            if cref == setting['option_1']:
+                                nameList[cref] = 2
+                                valueList.append(compound['maxFlux'])
+                                valueList.append(0)
+            except:
+                print("Isolate media option failure")
 
 
 
@@ -191,21 +206,26 @@ class Coveringarray:
 
         print("\n\n============== Formatted Input End ===============\n\n")
 
-        os.system('/kb/module/./cover inputfile.txt -F')
+        try:
+            os.system('/kb/module/./cover inputfile.txt -F')
+            
+            outputfile = open("anneal.out", 'r')
+            rawout = " "
 
-        outputfile = open("anneal.out", 'r')
-        rawout = " "
+            for line in outputfile:
+                rawout += line
 
-        for line in outputfile:
-            rawout += line
+            outputfile.close()
 
-        outputfile.close()
-
-        outputfile = open("anneal.out", 'r')
+            outputfile = open("anneal.out", 'r')
+        except:
+            print("Wrapped cover tool failure")
 
         finaloutputText = " "
         trimmedOutFile = ""
 
+
+        #if json out do this elif media out do that else
         matrixData = {
         "row_ids":[],
         "column_ids":[],
@@ -216,7 +236,11 @@ class Coveringarray:
         "data":[[]]
 
 
-        }        
+        }
+       
+
+        
+
 
         
 
@@ -285,16 +309,81 @@ class Coveringarray:
         print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n" + rawout)
 
 
-        if params['output_media'] is not None:
+        if params['output_media'] is not None and params['output_json_check'] == 1:
 
             workspaceClient = Workspace(self.workspaceURL,token = ctx['token'])
+            #try catch for json object creation 
+            try:
+                matrixObject = workspaceClient.save_objects({'workspace': params['workspace_name'],
+                                                        'objects': [{'name':params['output_media'],
+                                                        'type':'MAK.StringDataTable',
+                                                        'data': matrixData}]
+                                                                        })
+            except:
+                print("JSON out object creation")
 
-            matrixObject = workspaceClient.save_objects({'workspace': params['workspace_name'],
-                                                    'objects': [{'name':params['output_media'],
-                                                    'type':'MAK.StringDataTable',
-                                                    'data': matrixData}]
-                                                                    })
+        class MediaCompound(object):
+            compound_ref = ""
+            concentration = 0
+            minFlux = 0
+            maxFlux = 0
+            def __init__(self,compound_ref,concentration,minFlux,maxFlux):
+                self.compound_ref = compound_ref
+                self.concentration = concentration
+                self.minFlux = minFlux
+                self.maxFlux = maxFlux
+            def __copy__(self):
+                return MediaCompound(self.compound_ref)
+            def __deepcopy__(self,memo):
+                return MediaCompound(copy.deepcopy(self.compound_ref,self.concentration,self.minFlux,self.maxFlux))
 
+        def make_compound(compound_ref,concentration,minFlux,maxFlux):
+            mediaCompound = MediaCompound(compound_ref,concentration,minFlux,maxFlux)
+            return mediaCompound
+
+        if params['output_media'] is not None and params['output_media_check'] == 1:
+            media_compounds_data = []
+            media_data = {}
+            media_data_list = []
+
+            for index1, case in enumerate(matrixData['data']):
+                media_compounds_data = []
+                for index2, compound in enumerate(case):
+                    media_compound = make_compound(matrixData['column_ids'][index2],100,compound,compound)
+                    media_compounds_data.append(copy.deepcopy(media_compound))
+                media_data = {
+                'mediacompounds':copy.deepcopy(media_compounds_data),
+                'isMinimal':0,
+                'isDefined':0,
+                'type':'Undefined',
+                'name':params['output_media']+str(index1)+str(index2),
+                'media_id':params['output_media']+str(index1)+str(index2)
+                }
+                media_data_list.append(media_data.copy())
+            for index,media in enumerate(media_data_list):
+                try:
+                    workspaceClient.save_objects({'workspace': params['workspace_name'],
+                                                        'objects': [{'name':media['name'],
+                                                        'type':'KbaseBioChem.Media',
+                                                        'data': media}]
+                                                                        })
+                except:
+                    print("KbaseBioChem.Media object out object creation failure")
+                    print("Media " + str(media['name']) + "Keys:\n" + str(media.keys())+'\n')
+                    print("Media " + str(media['name']) +  "Values:\n" + str(media.values())+'\n')
+                    print("Media compounds of " + str(media['name']) + str(media['mediacompounds']))
+
+#            matrixData = {
+  #      "row_ids":[],
+  #      "column_ids":[],
+  #      "row_labels":['combinations'],
+  #      "column_labels":['compounds'],
+  #      "row_groups_ids":['1'],
+  #      "column_groups_ids":['1'],
+ #       "data":[[]]
+#
+#
+ #       }    
 
 # each value is organizated by order, with pairs grouped
         #object_report = {'ref':matrixObject[0]['ref'],'description': 'Covering array matrix generated by Build Covering Array'}

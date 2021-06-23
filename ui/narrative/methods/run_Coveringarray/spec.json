@@ -72,6 +72,32 @@
             
         },
         { 
+            "id": "output_media_check",
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "0" ],
+            "field_type": "checkbox",
+            "checkbox_options":{
+                "unchecked_value": 0,
+                "checked_value": 1
+            }
+            
+        },
+        { 
+            "id": "output_json_check",
+            "optional": true,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "0" ],
+            "field_type": "checkbox",
+            "checkbox_options":{
+                "unchecked_value": 0,
+                "checked_value": 1
+            }
+            
+        },
+        { 
             "id": "evaluation_options",
             "optional": false,
             "advanced": true,

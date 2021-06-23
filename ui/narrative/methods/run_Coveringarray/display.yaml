@@ -31,7 +31,7 @@ parameter-groups:
 
         container_object:
             ui-name: |
-              Item to evaluate
+              Parameters to combine
             short-hint: |
               Item with configuration to test coverage
 
@@ -39,7 +39,7 @@ parameters:
 
     option_0:
         ui-name: |
-            Array Strength
+            Array Strength (Eg 1,2,3,4)
         short-hint: |
             Strength of the covering array
         long-hint: |
@@ -47,7 +47,7 @@ parameters:
 
     option_1:
         ui-name: |
-            Setting Name
+            Setting name (enter values)
         short-hint: |
             Name of the parameter
         long-hint : |
@@ -57,7 +57,7 @@ parameters:
 #
     option_2:
         ui-name : |
-            Potential value of the setting
+            Value
         short-hint: |
             Each factor value is assigned a single potential value of the named setting
         long-hint : |
@@ -73,21 +73,38 @@ parameters:
 
     output_media:
         ui-name : |
-            File out
+            name of file out
         short-hint: |
             Output name of coverage table
         long-hint : |
             Allows output of coverage table into json file for use in other narrative members
 
+    output_media_check:
+        ui-name : |
+            Enable Kbasebiochem.Media object output
+        short-hint: |
+            Enables creation of a media object
+        long-hint : |
+            Enables creation of a media object
+
+    output_json_check:
+        ui-name : |
+            Enable MAKStringDatatable object output
+        short-hint: |
+            Enables creation of MAK String data table object
+        long-hint : |
+            Enables creation of MAK String data table object
+
+
     evaluation_options:
         ui-name : |
             Select mode of input evaluation
         short-hint: |
-            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or search for and evaluate said elements in a media input
+            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or act as a selection list
         long-hint: |
-            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or search for and evaluate said elements in a media input
+            Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or act as a selection list
 
             
 
 description: |
-      <p>This method is used to create a test suite for arbitrary input given a list varibles and their potential values. </p>
+      <p>This method is used to create a test suite for arbitrary input given a list varibles and their potential values. Wraping the tool presented here: https://dl.acm.org/doi/10.5555/776816.776822 </p>
