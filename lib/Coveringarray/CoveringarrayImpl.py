@@ -335,7 +335,7 @@ class Coveringarray:
             def __copy__(self):
                 return MediaCompound(self.compound_ref)
             def __deepcopy__(self,memo):
-                return MediaCompound(copy.deepcopy(self.compound_ref,self.concentration,self.minFlux,self.maxFlux))
+                return MediaCompound(copy.deepcopy(self.compound_ref,memo))
 
         def make_compound(compound_ref,concentration,minFlux,maxFlux):
             mediaCompound = MediaCompound(compound_ref,concentration,minFlux,maxFlux)
@@ -350,9 +350,9 @@ class Coveringarray:
                 media_compounds_data = []
                 for index2, compound in enumerate(case):
                     media_compound = make_compound(matrixData['column_ids'][index2],100,compound,compound)
-                    media_compounds_data.append(copy.deepcopy(media_compound))
+                    media_compounds_data.append(copy.copy(media_compound))
                 media_data = {
-                'mediacompounds':copy.deepcopy(media_compounds_data),
+                'mediacompounds':copy.copy(media_compounds_data),
                 'isMinimal':0,
                 'isDefined':0,
                 'type':'Undefined',
