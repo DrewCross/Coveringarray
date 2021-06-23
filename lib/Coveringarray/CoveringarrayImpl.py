@@ -350,9 +350,9 @@ class Coveringarray:
                 media_compounds_data = []
                 for index2, compound in enumerate(case):
                     media_compound = make_compound(matrixData['column_ids'][index2],100,compound,compound)
-                    media_compounds_data.append(copy.copy(media_compound))
+                    media_compounds_data.append(media_compound)
                 media_data = {
-                'mediacompounds':copy.copy(media_compounds_data),
+                'mediacompounds':media_compounds_data,
                 'isMinimal':0,
                 'isDefined':0,
                 'type':'Undefined',
