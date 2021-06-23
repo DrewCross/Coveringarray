@@ -148,6 +148,12 @@
                     "input_parameter": "input_media",
                     "target_property": "input_media"
                 },{
+                    "input_parameter": "output_json_check",
+                    "target_property": "output_json_check"
+                },{
+                    "input_parameter": "output_media_check",
+                    "target_property": "output_media_check"
+                },{
                     "input_parameter": "output_media",
                     "target_property": "output_media"
                 },{
