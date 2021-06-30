@@ -362,8 +362,8 @@ class Coveringarray:
                 'isMinimal':0,
                 'isDefined':0,
                 'type':'Undefined',
-                'name':params['output_media']+str(index1)+str(index2),
-                'id':params['output_media']+str(index1)+str(index2)
+                'name':params['output_media']+str(index1),
+                'id':params['output_media']+str(index1)
                 }
                 media_data_list.append(media_data.copy())
             for index,media in enumerate(media_data_list):
