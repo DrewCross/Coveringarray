@@ -3,6 +3,8 @@
 import logging
 import os
 import copy
+import traceback
+import json
 from biokbase.workspace.client import Workspace
 from installed_clients.DataFileUtilClient import DataFileUtil
 from installed_clients.KBaseReportClient import KBaseReport
@@ -322,23 +324,27 @@ class Coveringarray:
             except:
                 print("JSON out object creation")
 
-        class MediaCompound(object):
-            compound_ref = ""
-            concentration = 0
-            minFlux = 0
-            maxFlux = 0
-            def __init__(self,compound_ref,concentration,minFlux,maxFlux):
-                self.compound_ref = compound_ref
-                self.concentration = concentration
-                self.minFlux = minFlux
-                self.maxFlux = maxFlux
-            def __copy__(self):
-                return MediaCompound(self.compound_ref,self.concentration,self.minFlux,self.maxFlux)
-            def __deepcopy__(self,memo):
-                return MediaCompound(copy.deepcopy(self.compound_ref,memo))
+
+        test_media = {
+            'mediacompounds':[{'compound_ref':'testref1','concentration':100,'minFlux':0,'maxFlux':0},{'compound_ref':'testref2','concentration':100,'minFlux':100,'maxFlux':100}],
+            'isMinimal':0,
+            'isDefined':0,
+            'type':'Undefined',
+            'name':'testname',
+            'id':'testid'
+        }
+          #  def __copy__(self):
+           #     return MediaCompound(self.compound_ref,self.concentration,self.minFlux,self.maxFlux)
+            #def __deepcopy__(self,memo):
+             #   return MediaCompound(copy.deepcopy(self.compound_ref,self.concentration,self.minFlux,self.maxFlux,memo))
 
         def make_compound(compound_ref,concentration,minFlux,maxFlux):
-            mediaCompound = MediaCompound(compound_ref,concentration,minFlux,maxFlux)
+            mediaCompound = {
+            'compound_ref':compound_ref,
+            'concentration':concentration,
+            'minFlux':minFlux,
+            'maxFlux':maxFlux
+            }
             return mediaCompound
 
         if params['output_media'] is not None and params['output_media_check'] == 1:
@@ -349,29 +355,36 @@ class Coveringarray:
             for index1, case in enumerate(matrixData['data']):
                 media_compounds_data = []
                 for index2, compound in enumerate(case):
-                    media_compound = make_compound(matrixData['column_ids'][index2],100,compound,compound)
-                    media_compounds_data.append(media_compound)
+                    media_compound = make_compound(matrixData['column_ids'][index2],100,int(compound),int(compound))
+                    media_compounds_data.append(copy.deepcopy(media_compound))
                 media_data = {
-                'mediacompounds':media_compounds_data,
+                'mediacompounds':copy.deepcopy(media_compounds_data),
                 'isMinimal':0,
                 'isDefined':0,
                 'type':'Undefined',
                 'name':params['output_media']+str(index1)+str(index2),
-                'media_id':params['output_media']+str(index1)+str(index2)
+                'id':params['output_media']+str(index1)+str(index2)
                 }
                 media_data_list.append(media_data.copy())
             for index,media in enumerate(media_data_list):
                 try:
                     workspaceClient.save_objects({'workspace': params['workspace_name'],
                                                         'objects': [{'name':media['name'],
-                                                        'type':'KbaseBioChem.Media',
+                                                        'type':'KBaseBiochem.Media',
                                                         'data': media}]
                                                                         })
                 except:
+                    print("\n\n ERROR TRACE: \n\n" + traceback.format_exc()+'\n\n')
                     print("KbaseBioChem.Media object out object creation failure")
                     print("Media " + str(media['name']) + "Keys:\n" + str(media.keys())+'\n')
-                    print("Media " + str(media['name']) +  "Values:\n" + str(media.values())+'\n')
-                    print("Media compounds of " + str(media['name']) + str(media['mediacompounds']))
+
+                    print("Media " + str(media['name']) +  "Values:\n" +'\n')
+
+                    for x,value in enumerate(media['mediacompounds']):
+                        print("Media compound "+ str(x) + ": "+ str(media['mediacompounds'][x]) +"\n")
+
+                    print("Other media properties"+str(media['isMinimal'])+ ' '+ str(media['isDefined'])+' ' + str(media['type'])+' ' + media['name']+' ' + media['media_id'])
+                    
 
 #            matrixData = {
   #      "row_ids":[],
