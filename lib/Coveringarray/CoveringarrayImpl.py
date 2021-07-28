@@ -83,6 +83,7 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
         #try catch for lack in media object failure
+        
         if params['input_media'] == "" or params['input_media'] is None:  # flake8 change
             try:
 
@@ -126,7 +127,7 @@ class Coveringarray:
                         cref = compound['compound_ref'].split("/")[-1]
                         nameList[cref] = 2
                         valueList.append(compound['maxFlux'])
-                        valueList.append(0)
+                        valueList.append(0.1)
 
                     for setting in params['container_object']:
                         if setting['option_1'] != "":
@@ -355,7 +356,7 @@ class Coveringarray:
             for index1, case in enumerate(matrixData['data']):
                 media_compounds_data = []
                 for index2, compound in enumerate(case):
-                    media_compound = make_compound(matrixData['column_ids'][index2],100,int(compound),int(compound))
+                    media_compound = make_compound(matrixData['column_ids'][index2],100,float(compound),float(compound))
                     media_compounds_data.append(copy.deepcopy(media_compound))
                 media_data = {
                 'mediacompounds':copy.deepcopy(media_compounds_data),
