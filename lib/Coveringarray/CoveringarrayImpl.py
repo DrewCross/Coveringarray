@@ -26,7 +26,7 @@ class Coveringarray:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "0.0.1"
+    VERSION = "0.1.1"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
     GIT_COMMIT_HASH = "eb4fdf080307375bd8f90fff332e22de653d917a"
 
@@ -127,7 +127,7 @@ class Coveringarray:
                         cref = compound['compound_ref'].split("/")[-1]
                         nameList[cref] = 2
                         valueList.append(compound['maxFlux'])
-                        valueList.append(0.1)
+                        valueList.append(-100)
 
                     for setting in params['container_object']:
                         if setting['option_1'] != "":
@@ -158,7 +158,7 @@ class Coveringarray:
                         if ow == 0:
                             nameList[cref] = 2
                             valueList.append(compound['maxFlux'])
-                            valueList.append(0)
+                            valueList.append(-100)
             except:
                 print("Overwrite media option failure")
 
@@ -175,9 +175,11 @@ class Coveringarray:
                             if cref == setting['option_1']:
                                 nameList[cref] = 2
                                 valueList.append(compound['maxFlux'])
-                                valueList.append(0)
+                                valueList.append(-100)
             except:
                 print("Isolate media option failure")
+
+
 
 
 
@@ -247,6 +249,8 @@ class Coveringarray:
 
         
 
+       
+
         for name in nameList:
             finaloutputText += name
             finaloutputText += " "
@@ -302,6 +306,24 @@ class Coveringarray:
             for column in range(len(matrixData["column_ids"])):
 
                 matrixData["data"][row].append(listversion[column+(row)*len(matrixData["column_ids"])])
+
+
+        if params['evaluation_options'] == 'isolate_media':
+            unchangedmedialist = []
+
+            for compound in mediaComps:
+                    cref = compound['compound_ref'].split("/")[-1]
+
+                    if cref not in matrixData['column_ids']:
+                        unchangedmedialist.append([cref,compound['maxFlux']])
+                        
+
+            for item in unchangedmedialist:
+                matrixData['column_ids'].append(item[0])
+                for row in matrixData["data"]:
+                    row.append(item[1])
+
+
             
 
         
@@ -356,7 +378,7 @@ class Coveringarray:
             for index1, case in enumerate(matrixData['data']):
                 media_compounds_data = []
                 for index2, compound in enumerate(case):
-                    media_compound = make_compound(matrixData['column_ids'][index2],100,float(compound),float(compound))
+                    media_compound = make_compound(matrixData['column_ids'][index2],100,-100,float(compound))
                     media_compounds_data.append(copy.deepcopy(media_compound))
                 media_data = {
                 'mediacompounds':copy.deepcopy(media_compounds_data),
