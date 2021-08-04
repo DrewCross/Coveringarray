@@ -166,7 +166,7 @@ class Coveringarray:
 
             try:
                 if params['evaluation_options'] == 'isolate_media':
-                    print("\n\n== Overwrite Media Elements Mode ==\n\n")
+                    print("\n\n== Isolate Media Elements Mode ==\n\n")
 
                     for compound in mediaComps:
                         cref = compound['compound_ref'].split("/")[-1]
@@ -187,7 +187,7 @@ class Coveringarray:
 
 
         sampleSize = len(nameList)
-        print("\n\n== samplesize adjusted ==\n\n")
+        print("\n\n== samplesize adjusted to" + str(sampleSize) + " ==\n\n")
 
         formattedParams = str(strength) + '\n' + str(sampleSize) + '\n'
 
