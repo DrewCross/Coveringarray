@@ -26,7 +26,7 @@ class Coveringarray:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "0.1.1"
+    VERSION = "0.1.2"
     GIT_URL = "https://github.com/DrewCross/Coveringarray"
     GIT_COMMIT_HASH = "eb4fdf080307375bd8f90fff332e22de653d917a"
 
