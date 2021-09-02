@@ -187,7 +187,7 @@ class Coveringarray:
 
 
         sampleSize = len(nameList)
-        print("\n\n== samplesize adjusted to" + str(sampleSize) + " ==\n\n")
+        print("\n\n== samplesize adjusted to " + str(sampleSize) + " ==\n\n")
 
         formattedParams = str(strength) + '\n' + str(sampleSize) + '\n'
 
@@ -329,12 +329,12 @@ class Coveringarray:
         
 
        
-
+        #replace finaloutput text script with sourcing from matrixdata
 
         print("\n\n\n FINAL OUTPUT\n" + finaloutputText + "\nFINAL OUTPUT  \n\n\n" + rawout)
 
 
-        if params['output_media'] is not None and params['output_json_check'] == 1:
+        if params['output_media'] is not None or params['output_json_check'] == 1:
 
             workspaceClient = Workspace(self.workspaceURL,token = ctx['token'])
             #try catch for json object creation 
@@ -377,9 +377,10 @@ class Coveringarray:
 
             for index1, case in enumerate(matrixData['data']):
                 media_compounds_data = []
-                for index2, compound in enumerate(case):
-                    media_compound = make_compound(matrixData['column_ids'][index2],100,-100,float(compound))
-                    media_compounds_data.append(copy.deepcopy(media_compound))
+                for index2, compound in enumerate(case): ###BELOW: Maybe? Is object creation tied to the test suite? I Dont remember...
+                    if float(compound) > 0: ##Compound filtering for trimmed makeups will conflict with test suite expected outcome of Coveing Array Tool
+                        media_compound = make_compound(matrixData['column_ids'][index2],100,-100,float(compound))
+                        media_compounds_data.append(copy.deepcopy(media_compound))
                 media_data = {
                 'mediacompounds':copy.deepcopy(media_compounds_data),
                 'isMinimal':0,
