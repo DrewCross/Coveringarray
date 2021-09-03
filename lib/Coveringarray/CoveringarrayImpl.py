@@ -363,7 +363,7 @@ class Coveringarray:
 
         def make_compound(compound_ref,concentration,minFlux,maxFlux):
             mediaCompound = {
-            'compound_ref':"kbase/default/compounds/id/"+compound_ref,
+            'compound_ref':"489/6/13/compounds/id/"+compound_ref,
             'concentration':concentration,
             'minFlux':minFlux,
             'maxFlux':maxFlux
