@@ -361,9 +361,9 @@ class Coveringarray:
             #def __deepcopy__(self,memo):
              #   return MediaCompound(copy.deepcopy(self.compound_ref,self.concentration,self.minFlux,self.maxFlux,memo))
 
-        def make_compound(index1,compound_ref,concentration,minFlux,maxFlux):
+        def make_compound(compound_ref,concentration,minFlux,maxFlux):
             mediaCompound = {
-            'compound_ref':params['output_media']+index1+"/compounds/id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
+            'compound_ref':str(compound_ref), ##KBaseBiochem.Biochemistry.compounds.*.id
             'concentration':concentration,
             'minFlux':minFlux,
             'maxFlux':maxFlux
@@ -379,7 +379,7 @@ class Coveringarray:
                 media_compounds_data = []##BELOW ISSUE: On CDG TESTS, sizes go from 20 -> 9 on 3 compound isolations, why are ~50% of reactions changing to sub 0?
                 for index2, compound in enumerate(case): ###BELOW: Maybe? Is object creation tied to the test suite? I Dont remember...
                     if float(compound) > 0: ##Compound filtering for trimmed makeups will conflict with test suite expected outcome of Coveing Array Tool
-                        media_compound = make_compound(str(index1),matrixData['column_ids'][index2],.001,-100,float(compound))
+                        media_compound = make_compound(matrixData['column_ids'][index2],.001,-100,float(compound))
                         media_compounds_data.append(copy.deepcopy(media_compound))
                 media_data = {
                 'mediacompounds':copy.deepcopy(media_compounds_data),
