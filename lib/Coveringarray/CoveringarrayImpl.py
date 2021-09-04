@@ -363,7 +363,7 @@ class Coveringarray:
 
         def make_compound(index1,compound_ref,concentration,minFlux,maxFlux):
             mediaCompound = {
-            'compound_ref':params['output_media']+index1"/compounds/id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
+            'compound_ref':params['output_media']+index1+"/compounds/id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
             'concentration':concentration,
             'minFlux':minFlux,
             'maxFlux':maxFlux
