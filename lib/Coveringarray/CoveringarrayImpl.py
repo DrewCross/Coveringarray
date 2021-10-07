@@ -363,7 +363,7 @@ class Coveringarray:
 
         def make_compound(compound_ref,concentration,minFlux,maxFlux):
             mediaCompound = {
-            'compound_ref': params['workspace_name']+"/compounds/"+"id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
+            'compound_ref': params['assembly_ref']+"/compounds/"+"id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
             'concentration':concentration, #first SECTION IS WORKSPACE NAME KBASEBIOCHEM -> WORKSPACE NAME I think it uses workspaceclient getobjects2 in order to fetch, check getobjects2 api!
             'minFlux':minFlux,
             'maxFlux':maxFlux
