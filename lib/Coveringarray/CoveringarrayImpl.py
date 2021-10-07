@@ -367,8 +367,8 @@ class Coveringarray:
             'concentration':concentration, #first SECTION IS WORKSPACE NAME KBASEBIOCHEM -> WORKSPACE NAME I think it uses workspaceclient getobjects2 in order to fetch, check getobjects2 api!
             'minFlux':minFlux,
             'maxFlux':maxFlux
-            }
-            return mediaCompound
+            } #potential reason: reference cpdxxx unrecognized error: media obect meta data shows "null" for extracted ids field and with no data bout the compounds
+            return mediaCompound #CAUSES: refernce data/ointers lost in the media creation process: solution, more deepcopies
 
         if params['output_media'] is not None and params['output_media_check'] == 1:
             media_compounds_data = []
@@ -389,8 +389,8 @@ class Coveringarray:
                 'name':params['output_media']+str(index1),
                 'id':params['output_media']+str(index1),
                 'sourceid':params['output_media']+str(index1)
-                }
-                media_data_list.append(media_data.copy())
+                } 
+                media_data_list.append(copy.deepcopy(media_data))
             for index,media in enumerate(media_data_list):
                 try:
                     workspaceClient.save_objects({'workspace': params['workspace_name'],
