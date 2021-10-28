@@ -361,9 +361,12 @@ class Coveringarray:
             #def __deepcopy__(self,memo):
              #   return MediaCompound(copy.deepcopy(self.compound_ref,self.concentration,self.minFlux,self.maxFlux,memo))
 
+##IDEAS 10/28/21: give a default value for compound_reference.
+##remove deepcopys and pass reference to preserve original object
+#call workspace save on each piece before assembling
         def make_compound(compound_ref,concentration,minFlux,maxFlux):
-            mediaCompound = {
-            'compound_ref': "571/9/9/"+"/compounds/"+"id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
+            mediaCompound = { 
+            'compound_ref': "489/6/8/"+"/compounds/"+"id/"+compound_ref, ##KBaseBiochem.Biochemistry.compounds.*.id
             'concentration':concentration, #first SECTION IS WORKSPACE NAME KBASEBIOCHEM -> WORKSPACE NAME I think it uses workspaceclient getobjects2 in order to fetch, check getobjects2 api!
             'minFlux':minFlux,
             'maxFlux':maxFlux
