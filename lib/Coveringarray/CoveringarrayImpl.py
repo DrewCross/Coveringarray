@@ -318,10 +318,10 @@ class Coveringarray:
                         unchangedmedialist.append([cref,compound['maxFlux']])
                         
 
-            #for item in unchangedmedialist:
-            #    matrixData['column_ids'].append(item[0])
-            #    for row in matrixData["data"]:
-            #        row.append(item[1])
+            for item in unchangedmedialist:
+                matrixData['column_ids'].append(item[0])
+                for row in matrixData["data"]:
+                    row.append(item[1])
 
 
             
