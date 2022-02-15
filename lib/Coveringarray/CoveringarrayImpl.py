@@ -28,7 +28,7 @@ class Coveringarray:
     ######################################### noqa
     VERSION = "0.1.6"
     GIT_URL = "git@github.com:DrewCross/Coveringarray.git"
-    GIT_COMMIT_HASH = "35d5e29de32c0d1379b14d13daa81f6fd244d126"
+    GIT_COMMIT_HASH = "e1e9bfe0f34eaca3a31f027792f47b0f4e594e5d"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -83,6 +83,9 @@ class Coveringarray:
         # strength = params["strength"]
         strength = int(params['option_0'])
         #try catch for lack in media object failure
+
+        for key,value in params.items():
+            print ("{},{}".format(key,value))
         
         if params['whole_media'] == "" or params['whole_media'] is None:  # flake8 change
             try:
@@ -102,21 +105,27 @@ class Coveringarray:
             #try catch for media object retreival failure
             mediainput = params['input_media']
 
-            if mediainput == "Full": 
-                mediainput = params['whole_media']
+            try: 
+                if mediainput == "Full": 
+                    mediainput = params['whole_media']
+                    medianame = params['workspace_name']+"/"+str(mediainput)
+                    media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
+                    print(media['id'])
 
-            try:
-                medianame = params['workspace_name']+"/"+str(mediainput)
+                    mediaComps = media.get("mediacompounds")
+                else:
+                    mediaComps = mediainput
 
-                media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
+
+                
+
+                
 
                 # print('\n\n ======' + str(media.items()) + '=======\n\n')
                 # for modnames in params['container_object']
                 #     if modnames['option_0'] == compound['name']
                 #         compo
-                print(media['id'])
-
-                mediaComps = media.get("mediacompounds")
+                
 
                 # print('\n\n ======' + str(mediaComps.items()) + '=======\n\n')
                 crefMatch = 0
