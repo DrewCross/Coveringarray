@@ -38,26 +38,26 @@
             "id":"one",
             "display" : "1",
             "ui_name" : "1",
-            "value" : "one"
+            "value" : 1
             },
             {
             "id":"two",
             "display" : "2",
             "ui_name" : "2",
-            "value" : "two"
+            "value" : 2
             },
             {
              "id":"three",
             "display" : "3",
             "ui_name" : "3",
-            "value" : "three"
+            "value" : 3
             
             },
             {
              "id":"four",
             "display" : "4",
             "ui_name" : "4",
-            "value" : "four"
+            "value" : 4
             
             }
             ]
@@ -67,7 +67,7 @@
         {
             "id": "option_1",
             "optional": true,
-            "advanced": false,
+            "advanced": true,
             "allow_multiple": false,
             "default_values": [ "placeholder" ],
             "field_type": "text"
@@ -76,7 +76,7 @@
         {
             "id": "option_2",
             "optional": true,
-            "advanced": false,
+            "advanced": true,
             "allow_multiple": true,
             "default_values": [ "placeholder" ],
             "field_type": "text"
