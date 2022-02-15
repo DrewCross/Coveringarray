@@ -99,7 +99,7 @@
         "optional": true,
         "advanced": false,
         "default_values": [
-        "Full"
+        "input_media"
         ],
         "text_options": {
         "valid_ws_types":[]
