@@ -5,8 +5,7 @@ name: Build Covering Array
 
 tooltip: |
     Generates an array of sufficient test configurations based on setting input
-
-screenshots: 
+screenshots:
     - CoveringArray_input_example.png
     - CoveringArray_output_example.png
 
@@ -34,17 +33,15 @@ parameter-groups:
               Parameters to combine
             short-hint: |
               Item with configuration to test coverage
-
 parameters:
 
-    option_0:
+    array_strength:
         ui-name: |
             Array Strength (Eg 1,2,3,4)
         short-hint: |
             Strength of the covering array
         long-hint: |
             Can be 2,3,4.. etc. Larger strength values lead to longer processing times
-
     option_1:
         ui-name: |
             Setting name (enter values)
@@ -53,8 +50,7 @@ parameters:
         long-hint : |
             Describes the name of the setting, can be any number of settings
             
-# define display information
-#
+
     option_2:
         ui-name : |
             Value
@@ -62,7 +58,6 @@ parameters:
             Each factor value is assigned a single potential value of the named setting
         long-hint : |
             Describes the states of the setting, can be any number of potential values
-
     input_media:
         ui-name : |
             Media In
@@ -70,7 +65,13 @@ parameters:
             Import table of potential values
         long-hint : |
             Input for kbase media files from other narrative members
-
+    element_selection:
+        ui-name: |
+            Compound Selection
+        short-hint: |
+            Select compounds to evaluate
+        long-hint: |
+            Select compounds to evaluate long
     output_media:
         ui-name : |
             name of file out
@@ -78,7 +79,6 @@ parameters:
             Output name of coverage table
         long-hint : |
             Allows output of coverage table into json file for use in other narrative members
-
     output_media_check:
         ui-name : |
             Enable Kbasebiochem.Media object output
@@ -86,7 +86,6 @@ parameters:
             Enables creation of a media object
         long-hint : |
             Enables creation of a media object
-
     output_json_check:
         ui-name : |
             Enable MAKStringDatatable object output
@@ -94,8 +93,6 @@ parameters:
             Enables creation of MAK String data table object
         long-hint : |
             Enables creation of MAK String data table object
-
-
     evaluation_options:
         ui-name : |
             Select mode of input evaluation
@@ -103,8 +100,6 @@ parameters:
             Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or act as a selection list
         long-hint: |
             Specifies whether "Items to evaluate" will overwrite corresponding media elements,append to media with possible duplication, or act as a selection list
-
             
-
 description: |
       <p>This method is used to create a test suite for arbitrary input given a list varibles and their potential values. Wraping the tool presented here: https://dl.acm.org/doi/10.5555/776816.776822 </p>
