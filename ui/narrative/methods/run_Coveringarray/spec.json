@@ -99,7 +99,7 @@
         "optional": true,
         "advanced": false,
         "default_values": [
-        "input_media"
+        "Full"
         ],
         "text_options": {
         "valid_ws_types":[]
@@ -222,6 +222,9 @@
                 },{
                     "input_parameter": "element_selection",
                     "target_property": "input_media"
+                },{
+                    "input_parameter": "input_media",
+                    "target_property": "whole_media"
                 },{
                     "input_parameter": "output_json_check",
                     "target_property": "output_json_check"
