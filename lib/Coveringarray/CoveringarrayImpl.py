@@ -26,9 +26,9 @@ class Coveringarray:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "0.1.2"
-    GIT_URL = "https://github.com/DrewCross/Coveringarray"
-    GIT_COMMIT_HASH = "eb4fdf080307375bd8f90fff332e22de653d917a"
+    VERSION = "0.1.6"
+    GIT_URL = "git@github.com:DrewCross/Coveringarray.git"
+    GIT_COMMIT_HASH = "35d5e29de32c0d1379b14d13daa81f6fd244d126"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -84,7 +84,7 @@ class Coveringarray:
         strength = int(params['option_0'])
         #try catch for lack in media object failure
         
-        if params['input_media'] == "" or params['input_media'] is None:  # flake8 change
+        if params['whole_media'] == "" or params['whole_media'] is None:  # flake8 change
             try:
 
                 for setting in params['container_object']:
@@ -102,7 +102,7 @@ class Coveringarray:
             #try catch for media object retreival failure
             mediainput = params['input_media']
 
-            if params['input_media'] == "Full": 
+            if mediainput == "Full": 
                 mediainput = params['whole_media']
 
             try:

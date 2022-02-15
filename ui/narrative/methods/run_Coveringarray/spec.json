@@ -82,7 +82,7 @@
             "field_type": "text"
         },
         {
-            "id": "input_media",
+            "id": "whole_media",
             "optional": true,
             "advanced": false,
             "allow_multiple": false,
@@ -93,7 +93,7 @@
             }
         },
         {
-        "id": "element_selection",
+        "id": "input_media",
         "field_type": "textsubdata",
         "allow_multiple": false,
         "optional": true,
@@ -130,7 +130,7 @@
         "path_to_subdata" : [
         "mediacompounds"
         ],
-        "parameter_id" : "input_media"
+        "parameter_id" : "whole_media"
         }
         }
         
@@ -220,10 +220,10 @@
                     "input_parameter": "option_2",
                     "target_property": "option_2"
                 },{
-                    "input_parameter": "element_selection",
+                    "input_parameter": "input_media",
                     "target_property": "input_media"
                 },{
-                    "input_parameter": "input_media",
+                    "input_parameter": "whole_media",
                     "target_property": "whole_media"
                 },{
                     "input_parameter": "output_json_check",

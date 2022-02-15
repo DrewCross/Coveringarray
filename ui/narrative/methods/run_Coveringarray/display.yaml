@@ -58,14 +58,14 @@ parameters:
             Each factor value is assigned a single potential value of the named setting
         long-hint : |
             Describes the states of the setting, can be any number of potential values
-    input_media:
+    whole_media:
         ui-name : |
             Media In
         short-hint: |
             Import table of potential values
         long-hint : |
             Input for kbase media files from other narrative members
-    element_selection:
+    input_media:
         ui-name: |
             Compound Selection
         short-hint: |
