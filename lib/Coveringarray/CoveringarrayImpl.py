@@ -122,16 +122,22 @@ class Coveringarray:
                     print(whole['id'])
 ## if input is full, input it replaced with media name, and proceed as normal
                     wholeComps = whole.get("mediacompounds")
+                    mediaComps = []
 
 
                     
-
-                    for index, mList in mediainput:
+                    print("BEFORE NEW CODE TEST!!!!!!!!!!!")
+                    for mList in mediainput:
+                        
                         for comp in wholeComps:
-                            cref = compound['compound_ref'].split("/")[-1]
+                            
+                            cref = comp['compound_ref']
+                            print("CREF: {}, mLIST: {} !!!!".format(cref,mList))
 
                             if cref == mList and comp not in mediaComps:
+                                print("THIS IS A MATCH!!!{}".format(cref))
                                 mediaComps.append(comp)
+
                     for comp in mediaComps:
                         print("TEST LOOK HERE!!!{}".format(comp))
 
