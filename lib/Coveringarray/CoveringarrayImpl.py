@@ -125,6 +125,10 @@ class Coveringarray:
                     mediaComps = []
 
 
+                    if type(mediainput) is not list:
+                        mediainput = mediainput.split(',')
+
+
                     
                     print("BEFORE NEW CODE TEST!!!!!!!!!!!")
                     for mList in mediainput:
