@@ -111,11 +111,34 @@ class Coveringarray:
                     medianame = params['workspace_name']+"/"+str(mediainput)
                     media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']
                     print(media['id'])
-
+## if input is full, input it replaced with media name, and proceed as normal
                     mediaComps = media.get("mediacompounds")
-                else:
-                    mediaComps = mediainput
 
+                    
+                else:
+                    wholeinput = params['whole_media']
+                    wholename = params['workspace_name']+"/"+str(wholeinput)
+                    whole = self.dfu.get_objects({'object_refs': [wholename]})['data'][0]['data']
+                    print(whole['id'])
+## if input is full, input it replaced with media name, and proceed as normal
+                    wholeComps = whole.get("mediacompounds")
+
+
+                    
+
+                    for index, mList in mediainput:
+                        for comp in wholeComps:
+                            cref = compound['compound_ref'].split("/")[-1]
+
+                            if cref == mList and comp not in mediaComps:
+                                mediaComps.append(comp)
+                    for comp in mediaComps:
+                        print("TEST LOOK HERE!!!{}".format(comp))
+
+                    print("END TEST SECTION ENDER")
+
+
+#set mediacomps to list of dicts as "/" + name                 
 
                 
 
