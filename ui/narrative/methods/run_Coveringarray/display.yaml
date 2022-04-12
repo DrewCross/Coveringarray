@@ -4,7 +4,7 @@
 name: Build Covering Array
 
 tooltip: |
-    Generates an array of sufficient test configurations based on setting input
+    Creates a sample that covers all t-way combinations of parameters (a cover array) for media and/or user defined parameters.
 screenshots:
     - CoveringArray_input_example.png
     - CoveringArray_output_example.png
@@ -32,7 +32,7 @@ parameter-groups:
             ui-name: |
               Parameters to combine
             short-hint: |
-              Item with configuration to test coverage
+              Enter custom parameters and the values for each.
 parameters:
 
     array_strength:
@@ -41,58 +41,57 @@ parameters:
         short-hint: |
             Strength of the covering array
         long-hint: |
-            Can be 2,3,4.. etc. Larger strength values lead to longer processing times
+            Can be 2,3,4.. etc. Larger strength values lead to longer processing times and larger samples.
     option_1:
         ui-name: |
-            Setting name (enter values)
+            Parameter name (enter values)
         short-hint: |
-            Name of the parameter
+            Name of the parameter.
         long-hint : |
-            Describes the name of the setting, can be any number of settings
-            
+            Name of the parameter.            
 
     option_2:
         ui-name : |
             Value
         short-hint: |
-            Each factor value is assigned a single potential value of the named setting
+            List the discrete values the parameter can hold. Add additional boxes to enumerate all values (large numbers of values may lead to large sample sizes).
         long-hint : |
-            Describes the states of the setting, can be any number of potential values
+            List the discrete values the parameter can hold. Add additional boxes to enumerate all values (large numbers of values may lead to large sample sizes).
     whole_media:
         ui-name : |
             Media In
         short-hint: |
             Import table of potential values
         long-hint : |
-            Input for kbase media files from other narrative members
+            Input media file to combine compounds (leave blank if want to define your own parameters).
     input_media:
         ui-name: |
             Compound Selection
         short-hint: |
-            Select compounds to evaluate
+            Select media compounds to evaluate.
         long-hint: |
-            Select compounds to evaluate long
+            Select media compounds to evaluate.
     output_media:
         ui-name : |
             name of file out
         short-hint: |
             Output name of coverage table
         long-hint : |
-            Allows output of coverage table into json file for use in other narrative members
-    output_media_check:
+            Add file name if you want to save a json file for use in other narratives (or for download). Default is to not save any file.
+        output_media_check:
         ui-name : |
-            Enable Kbasebiochem.Media object output
+            Create media output files
         short-hint: |
-            Enables creation of a media object
+            Creats a media file for each combination in the sample (note - if you have a large sample this can create many files). These will be numbered from 0... to n-1.
         long-hint : |
-            Enables creation of a media object
+            Creats a media file for each combination in the sample (note - if you have a large sample this can create many files). These will be numbered from 0... to n-1.
     output_json_check:
         ui-name : |
-            Enable MAKStringDatatable object output
+            Create combined output file
         short-hint: |
-            Enables creation of MAK String data table object
+            Create json file containing all of the media  files in a single file for download.
         long-hint : |
-            Enables creation of MAK String data table object
+            Create json file containing all of the media  files in a single file for download.
     evaluation_options:
         ui-name : |
             Select mode of input evaluation

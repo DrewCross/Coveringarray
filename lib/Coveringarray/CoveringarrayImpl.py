@@ -106,7 +106,7 @@ class Coveringarray:
             mediainput = params['input_media']
 
             try: 
-                if mediainput == "Full": 
+                if mediainput == "Select all": 
                     mediainput = params['whole_media']
                     medianame = params['workspace_name']+"/"+str(mediainput)
                     media = self.dfu.get_objects({'object_refs': [medianame]})['data'][0]['data']

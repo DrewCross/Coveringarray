@@ -69,7 +69,7 @@
             "optional": true,
             "advanced": true,
             "allow_multiple": false,
-            "default_values": [ "placeholder" ],
+            "default_values": [ "" ],
             "field_type": "text"
             
         },
@@ -78,7 +78,7 @@
             "optional": true,
             "advanced": true,
             "allow_multiple": true,
-            "default_values": [ "placeholder" ],
+            "default_values": [ "" ],
             "field_type": "text"
         },
         {
@@ -99,7 +99,7 @@
         "optional": true,
         "advanced": false,
         "default_values": [
-        "Full"
+        "Select all"
         ],
         "text_options": {
         "valid_ws_types":[]
