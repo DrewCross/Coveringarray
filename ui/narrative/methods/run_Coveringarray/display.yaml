@@ -78,7 +78,7 @@ parameters:
             Output name of coverage table
         long-hint : |
             Add file name if you want to save a json file for use in other narratives (or for download). Default is to not save any file.
-        output_media_check:
+    output_media_check:
         ui-name : |
             Create media output files
         short-hint: |
